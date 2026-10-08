@@ -1,361 +1,975 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Pour Licia 💌</title>
+<title>Pour Licia 💌</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    body {
-      min-height: 100vh;
-      overflow: hidden;
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at 50% 35%, #ffd9e8 0%, #f8a9c5 35%, #df6f9d 75%, #b83f72 100%);
-      color: #fff;
-    }
+html,body{
+  width:100%;
+  min-height:100%;
+  font-family:Georgia,"Times New Roman",serif;
+}
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
+body{
+  overflow:hidden;
+  color:white;
+  background:#160811;
+}
 
-    /* Lumière derrière l'enveloppe */
-    .glow {
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.22);
-      filter: blur(45px);
-      animation: glow 4s ease-in-out infinite;
-    }
+/* =========================
+   SCÈNES
+========================= */
 
-    @keyframes glow {
-      0%, 100% {
-        transform: scale(0.9);
-        opacity: 0.5;
-      }
-      50% {
-        transform: scale(1.15);
-        opacity: 0.9;
-      }
-    }
+.scene{
+  position:fixed;
+  inset:0;
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:25px;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity 1s ease;
+  overflow-y:auto;
+}
 
-    /* Petits cœurs */
-    .heart {
-      position: absolute;
-      font-size: 18px;
-      opacity: 0;
-      animation: floatHeart linear infinite;
-      user-select: none;
-      pointer-events: none;
-    }
+.scene.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
 
-    @keyframes floatHeart {
-      0% {
-        transform: translateY(110vh) scale(0.7) rotate(0deg);
-        opacity: 0;
-      }
-      15% {
-        opacity: 0.7;
-      }
-      85% {
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateY(-15vh) scale(1.2) rotate(25deg);
-        opacity: 0;
-      }
-    }
+/* =========================
+   BOUTONS
+========================= */
 
-    .content {
-      position: relative;
-      z-index: 5;
-      text-align: center;
-      padding: 25px;
-    }
+.btn{
+  border:none;
+  padding:14px 28px;
+  border-radius:30px;
+  background:#a92f61;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(100,20,50,.3);
+  transition:.3s;
+}
 
-    .little-text {
-      font-size: 15px;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-      opacity: 0.9;
-    }
+.btn:hover{
+  transform:scale(1.05);
+}
 
-    /* ENVELOPPE */
-    .envelope-container {
-      width: 300px;
-      height: 220px;
-      position: relative;
-      cursor: pointer;
-      margin: auto;
-      transition: transform 0.3s ease;
-    }
+.btn:active{
+  transform:scale(.97);
+}
 
-    .envelope-container:hover {
-      transform: scale(1.03);
-    }
+/* =========================
+   SCÈNE 1
+========================= */
 
-    .envelope {
-      width: 100%;
-      height: 180px;
-      position: absolute;
-      bottom: 0;
-      background: linear-gradient(145deg, #ffb4cf, #ed709f);
-      border-radius: 8px;
-      box-shadow:
-        0 25px 50px rgba(95, 20, 55, 0.35),
-        inset 0 1px 0 rgba(255,255,255,0.4);
-    }
+#scene1{
+  background:
+  radial-gradient(circle at 50% 35%,#ffd9e8 0%,#f8a9c5 35%,#df6f9d 75%,#b83f72 100%);
+}
 
-    /* rabat */
-    .flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 150px solid transparent;
-      border-right: 150px solid transparent;
-      border-top: 105px solid #ff91b7;
-      transform-origin: top center;
-      transition: transform 1s cubic-bezier(.68,-0.55,.27,1.55);
-      z-index: 4;
-    }
+.glow{
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:rgba(255,255,255,.22);
+  filter:blur(45px);
+  animation:glow 4s ease-in-out infinite;
+}
 
-    /* intérieur */
-    .inside {
-      position: absolute;
-      width: 88%;
-      height: 145px;
-      left: 6%;
-      top: 12px;
-      background: #fff8fb;
-      border-radius: 5px;
-      z-index: 2;
-      box-shadow: 0 5px 20px rgba(120, 20, 60, 0.12);
-    }
+@keyframes glow{
+  0%,100%{
+    transform:scale(.9);
+    opacity:.5;
+  }
+  50%{
+    transform:scale(1.15);
+    opacity:.9;
+  }
+}
 
-    /* cœur/cachet */
-    .seal {
-      position: absolute;
-      left: 50%;
-      top: 82px;
-      transform: translate(-50%, -50%);
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      background: #d94176;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
-      z-index: 6;
-      box-shadow: 0 8px 20px rgba(110, 15, 55, 0.3);
-      transition: all 0.5s ease;
-    }
+.heart{
+  position:absolute;
+  font-size:18px;
+  opacity:0;
+  animation:floatHeart linear infinite;
+  user-select:none;
+  pointer-events:none;
+}
 
-    .envelope-container.open .flap {
-      transform: rotateX(180deg);
-    }
+@keyframes floatHeart{
+  0%{
+    transform:translateY(110vh) scale(.7) rotate(0deg);
+    opacity:0;
+  }
+  15%{
+    opacity:.7;
+  }
+  85%{
+    opacity:.7;
+  }
+  100%{
+    transform:translateY(-15vh) scale(1.2) rotate(25deg);
+    opacity:0;
+  }
+}
 
-    .envelope-container.open .seal {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(1.5);
-    }
+.content{
+  position:relative;
+  z-index:5;
+  text-align:center;
+}
 
-    .envelope-container.open {
-      animation: envelopeOpen 1.2s ease forwards;
-    }
+.little-text{
+  font-size:15px;
+  letter-spacing:2px;
+  margin-bottom:30px;
+}
 
-    @keyframes envelopeOpen {
-      50% {
-        transform: scale(1.08);
-      }
-      100% {
-        transform: scale(0.95);
-        opacity: 0;
-      }
-    }
+.envelope-container{
+  width:300px;
+  height:220px;
+  position:relative;
+  cursor:pointer;
+  margin:auto;
+  transition:transform .3s ease;
+}
 
-    .open-text {
-      margin-top: 35px;
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 10px rgba(80, 0, 35, 0.25);
-      animation: pulseText 2s ease-in-out infinite;
-    }
+.envelope-container:hover{
+  transform:scale(1.03);
+}
 
-    @keyframes pulseText {
-      0%, 100% {
-        transform: translateY(0);
-        opacity: 0.9;
-      }
-      50% {
-        transform: translateY(-5px);
-        opacity: 1;
-      }
-    }
+.envelope{
+  width:100%;
+  height:180px;
+  position:absolute;
+  bottom:0;
+  background:linear-gradient(145deg,#ffb4cf,#ed709f);
+  border-radius:8px;
+  box-shadow:
+    0 25px 50px rgba(95,20,55,.35),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
 
-    .subtitle {
-      margin-top: 12px;
-      font-size: 14px;
-      opacity: 0.8;
-    }
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:0;
+  border-left:150px solid transparent;
+  border-right:150px solid transparent;
+  border-top:105px solid #ff91b7;
+  transform-origin:top center;
+  transition:transform 1s cubic-bezier(.68,-.55,.27,1.55);
+  z-index:4;
+}
 
-    /* écran après ouverture */
-    .welcome {
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px;
-      background:
-        radial-gradient(circle at center, #ffe6f0, #f5a5c2 55%, #c84e7e);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 1.5s ease;
-    }
+.inside{
+  position:absolute;
+  width:88%;
+  height:145px;
+  left:6%;
+  top:12px;
+  background:#fff8fb;
+  border-radius:5px;
+  z-index:2;
+}
 
-    .welcome.show {
-      opacity: 1;
-      visibility: visible;
-    }
+.seal{
+  position:absolute;
+  left:50%;
+  top:82px;
+  transform:translate(-50%,-50%);
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#d94176;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  z-index:6;
+  box-shadow:0 8px 20px rgba(110,15,55,.3);
+  transition:.5s;
+}
 
-    .welcome h1 {
-      font-size: clamp(32px, 9vw, 65px);
-      margin-bottom: 20px;
-      color: #8d2855;
-    }
+.envelope-container.open .flap{
+  transform:rotateX(180deg);
+}
 
-    .welcome p {
-      max-width: 500px;
-      font-size: 18px;
-      line-height: 1.8;
-      color: #702441;
-    }
+.envelope-container.open .seal{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(1.5);
+}
 
-    .continue {
-      margin-top: 35px;
-      border: none;
-      padding: 14px 28px;
-      border-radius: 30px;
-      background: #a92f61;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(100,20,50,.25);
-    }
-  </style>
+.envelope-container.open{
+  animation:envelopeOpen 1.2s ease forwards;
+}
+
+@keyframes envelopeOpen{
+  50%{
+    transform:scale(1.08);
+  }
+  100%{
+    transform:scale(.95);
+    opacity:0;
+  }
+}
+
+.open-text{
+  margin-top:35px;
+  font-size:22px;
+  font-weight:bold;
+  letter-spacing:1px;
+  animation:pulseText 2s ease-in-out infinite;
+}
+
+@keyframes pulseText{
+  0%,100%{
+    transform:translateY(0);
+    opacity:.9;
+  }
+  50%{
+    transform:translateY(-5px);
+    opacity:1;
+  }
+}
+
+.subtitle{
+  margin-top:12px;
+  font-size:14px;
+  opacity:.8;
+}
+
+/* =========================
+   SCÈNE 2
+========================= */
+
+#scene2{
+  background:
+    radial-gradient(circle at center,#ffe6f0,#f5a5c2 55%,#c84e7e);
+}
+
+.message-box{
+  max-width:700px;
+}
+
+.message-box h1{
+  font-size:clamp(34px,9vw,65px);
+  color:#8d2855;
+  margin-bottom:25px;
+}
+
+.message-box p{
+  font-size:19px;
+  line-height:1.9;
+  color:#702441;
+  margin-bottom:30px;
+}
+
+.signature{
+  font-size:18px;
+  color:#8d2855;
+  margin-bottom:30px;
+}
+
+/* =========================
+   SCÈNE 3 — SOUVENIRS
+========================= */
+
+#scene3{
+  background:
+    linear-gradient(135deg,#12070d,#351322,#12070d);
+}
+
+.memory-box{
+  width:100%;
+  max-width:900px;
+}
+
+.memory-box h2{
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.memory-box .intro{
+  opacity:.8;
+  margin-bottom:25px;
+}
+
+.photos{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-bottom:30px;
+}
+
+.photo{
+  height:220px;
+  border-radius:18px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#ffb4cf,#762044);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.photo span{
+  padding:20px;
+  opacity:.8;
+}
+
+@media(max-width:650px){
+  .photos{
+    grid-template-columns:1fr;
+  }
+
+  .photo{
+    height:180px;
+  }
+}
+
+/* =========================
+   SCÈNE 4 — VIDÉO
+========================= */
+
+#scene4{
+  background:
+    radial-gradient(circle at center,#21101a,#090509);
+}
+
+.video-box{
+  width:100%;
+  max-width:750px;
+}
+
+.video-box h2{
+  font-size:38px;
+  margin-bottom:12px;
+}
+
+.video-box p{
+  opacity:.8;
+  margin-bottom:25px;
+}
+
+.video-container{
+  width:100%;
+  aspect-ratio:16/9;
+  background:#050505;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.video-container video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.video-placeholder{
+  padding:30px;
+  opacity:.65;
+}
+
+/* =========================
+   SCÈNE 5 — CADEAUX
+========================= */
+
+#scene5{
+  background:
+    radial-gradient(circle at center,#ffe5f0,#c96a91 55%,#681f40);
+}
+
+.gift-box{
+  width:100%;
+  max-width:900px;
+}
+
+.gift-box h2{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.gift-box .instruction{
+  margin-bottom:25px;
+  opacity:.9;
+}
+
+.gifts{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.gift{
+  border:2px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+  border-radius:20px;
+  padding:25px 15px;
+  cursor:pointer;
+  transition:.3s;
+  color:white;
+}
+
+.gift:hover{
+  transform:translateY(-5px);
+  background:rgba(255,255,255,.2);
+}
+
+.gift.selected{
+  border-color:#fff;
+  background:rgba(255,255,255,.3);
+  transform:translateY(-5px) scale(1.02);
+}
+
+.gift .emoji{
+  font-size:45px;
+  margin-bottom:12px;
+}
+
+.gift h3{
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+.gift p{
+  font-size:13px;
+  line-height:1.5;
+  opacity:.85;
+}
+
+.counter{
+  margin-bottom:18px;
+  font-size:14px;
+}
+
+@media(max-width:700px){
+  .gifts{
+    grid-template-columns:1fr;
+  }
+
+  .gift{
+    padding:20px;
+  }
+}
+
+/* =========================
+   SCÈNE 6 — FINAL
+========================= */
+
+#scene6{
+  background:
+    radial-gradient(circle at center,#ffdce9,#c95886 55%,#591a37);
+}
+
+.final-box{
+  max-width:700px;
+}
+
+.final-heart{
+  font-size:80px;
+  animation:heartBeat 1.5s infinite;
+  margin-bottom:20px;
+}
+
+@keyframes heartBeat{
+  0%,100%{
+    transform:scale(1);
+  }
+  50%{
+    transform:scale(1.15);
+  }
+}
+
+.final-box h1{
+  font-size:clamp(38px,10vw,70px);
+  margin-bottom:20px;
+}
+
+.final-box p{
+  font-size:19px;
+  line-height:1.8;
+  margin-bottom:15px;
+}
+
+.final-signature{
+  margin-top:30px;
+  font-size:18px;
+}
+
+/* =========================
+   PETITS FEUX
+========================= */
+
+.confetti{
+  position:fixed;
+  width:8px;
+  height:14px;
+  top:-20px;
+  z-index:100;
+  animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="page">
+<!-- ==================================================
+     SCÈNE 1 — ENVELOPPE
+================================================== -->
 
-    <div class="glow"></div>
+<section class="scene active" id="scene1">
 
-    <!-- Cœurs flottants -->
-    <div class="heart" style="left:8%; animation-duration:8s;">♡</div>
-    <div class="heart" style="left:20%; animation-duration:11s; animation-delay:2s;">♥</div>
-    <div class="heart" style="left:35%; animation-duration:9s; animation-delay:1s;">♡</div>
-    <div class="heart" style="left:55%; animation-duration:12s; animation-delay:3s;">♥</div>
-    <div class="heart" style="left:72%; animation-duration:10s; animation-delay:1.5s;">♡</div>
-    <div class="heart" style="left:88%; animation-duration:13s; animation-delay:4s;">♥</div>
+  <div class="glow"></div>
 
-    <div class="content">
+  <div class="heart" style="left:8%;animation-duration:8s;">♡</div>
+  <div class="heart" style="left:20%;animation-duration:11s;animation-delay:2s;">♥</div>
+  <div class="heart" style="left:35%;animation-duration:9s;animation-delay:1s;">♡</div>
+  <div class="heart" style="left:55%;animation-duration:12s;animation-delay:3s;">♥</div>
+  <div class="heart" style="left:72%;animation-duration:10s;animation-delay:1.5s;">♡</div>
+  <div class="heart" style="left:88%;animation-duration:13s;animation-delay:4s;">♥</div>
 
-      <div class="little-text">
-        POUR TOI, LICIA ✨
-      </div>
+  <div class="content">
 
-      <div class="envelope-container" id="envelope">
+    <div class="little-text">
+      POUR TOI, LICIA ✨
+    </div>
 
-        <div class="envelope">
+    <div class="envelope-container" id="envelope">
 
-          <div class="inside"></div>
+      <div class="envelope">
 
-          <div class="flap"></div>
+        <div class="inside"></div>
 
-          <div class="seal">
-            ❤️
-          </div>
+        <div class="flap"></div>
 
+        <div class="seal">
+          ❤️
         </div>
 
       </div>
 
-      <div class="open-text">
-        Ouvre-moi 💌
-      </div>
+    </div>
 
-      <div class="subtitle">
-        J'ai préparé quelque chose pour toi...
-      </div>
+    <div class="open-text">
+      Ouvre-moi 💌
+    </div>
 
+    <div class="subtitle">
+      J'ai préparé quelque chose pour toi...
     </div>
 
   </div>
 
+</section>
 
-  <!-- ÉCRAN APRÈS OUVERTURE -->
 
-  <div class="welcome" id="welcome">
+<!-- ==================================================
+     SCÈNE 2 — MESSAGE
+================================================== -->
+
+<section class="scene" id="scene2">
+
+  <div class="message-box">
 
     <h1>Pour toi, ma vie ❤️</h1>
 
     <p>
-      Il y a des personnes qu'on rencontre...
-      et d'autres qu'on remercie simplement
-      d'exister.
+      Ma vie je crois que la gravité a fait son travail
+      parce que malgré la distance, le temps et toutes les choses
+      qui peuvent nous séparer, mon cœur revient toujours vers toi.
     </p>
 
-    <button class="continue" onclick="startExperience()">
-      Continuer ✨
+    <p>
+      Aujourd'hui je ne veux pas seulement te souhaiter
+      un joyeux anniversaire.
+      Je veux surtout te remercier d'exister ma chérie.
+    </p>
+
+    <p>
+      Merci pour les souvenirs, les rires, les moments,
+      les discussions et même les petits détails
+      que tu ne penses peut-être pas importants.
+    </p>
+
+    <div class="signature">
+      Cette petite surprise est juste pour toi ❤️
+    </div>
+
+    <button class="btn" onclick="goToScene(3)">
+      Voir nos souvenirs 📸
     </button>
 
   </div>
 
+</section>
 
-  <script>
 
-    const envelope = document.getElementById("envelope");
-    const welcome = document.getElementById("welcome");
+<!-- ==================================================
+     SCÈNE 3 — SOUVENIRS
+================================================== -->
 
-    envelope.addEventListener("click", () => {
+<section class="scene" id="scene3">
 
-      envelope.classList.add("open");
+  <div class="memory-box">
 
-      setTimeout(() => {
-        welcome.classList.add("show");
-      }, 900);
+    <h2>Quelques souvenirs de nous 📸</h2>
 
-    });
+    <p class="intro">
+      Parce que certaines images racontent des choses
+      que les mots n'arrivent pas toujours à expliquer...
+    </p>
 
-    function startExperience() {
+    <div class="photos">
 
-      alert("Notre aventure commence ici ❤️");
+      <!-- REMPLACE photo1.jpg par ton vrai fichier -->
+      <div class="photo">
+        <img src="photo1.jpg" alt="Souvenir 1">
+      </div>
+
+      <!-- REMPLACE photo2.jpg par ton vrai fichier -->
+      <div class="photo">
+        <img src="photo2.jpg" alt="Souvenir 2">
+      </div>
+
+      <!-- REMPLACE photo3.jpg par ton vrai fichier -->
+      <div class="photo">
+        <img src="photo3.jpg" alt="Souvenir 3">
+      </div>
+
+    </div>
+
+    <button class="btn" onclick="goToScene(4)">
+      J'ai encore quelque chose pour toi 🎥
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================================
+     SCÈNE 4 — VIDÉO
+================================================== -->
+
+<section class="scene" id="scene4">
+
+  <div class="video-box">
+
+    <h2>Un petit moment pour toi 🎥</h2>
+
+    <p>
+      Mets le son et profite tranquillement ❤️
+    </p>
+
+    <div class="video-container">
+
+      <!-- REMPLACE anniversaire.mp4 par ta vraie vidéo -->
+      <video controls playsinline>
+        <source src="anniversaire.mp4" type="video/mp4">
+
+        Ton navigateur ne peut pas lire cette vidéo.
+      </video>
+
+      <div class="video-placeholder">
+        Ta vidéo apparaîtra ici 🎬
+      </div>
+
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="goToScene(5)">
+      Et maintenant... ton choix 🎁
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================================
+     SCÈNE 5 — CHOIX DES CADEAUX
+================================================== -->
+
+<section class="scene" id="scene5">
+
+  <div class="gift-box">
+
+    <h2>Choisis tes cadeaux 🎁</h2>
+
+    <p class="instruction">
+      Tu peux choisir jusqu'à <strong>2 cadeaux</strong> ❤️
+    </p>
+
+    <div class="counter">
+      <span id="counter">0</span>/2 choix sélectionnés
+    </div>
+
+    <div class="gifts">
+
+      <div class="gift" onclick="selectGift(this,'iPhone 14')">
+
+        <div class="emoji">📱</div>
+
+        <h3>iPhone 14 blanc</h3>
+
+        <p>
+          256 Go • version américaine<br>
+          avec boîte, accessoires et power bank
+        </p>
+
+      </div>
+
+
+      <div class="gift" onclick="selectGift(this,'Cerelac')">
+
+        <div class="emoji">🥣</div>
+
+        <h3>Un carton de Cerelac</h3>
+
+        <p>
+          Parce que parfois les meilleurs cadeaux
+          sont ceux qu'on choisit avec le cœur 😂❤️
+        </p>
+
+      </div>
+
+
+      <div class="gift" onclick="selectGift(this,'Journée ensemble')">
+
+        <div class="emoji">❤️</div>
+
+        <h3>Une journée entière avec moi</h3>
+
+        <p>
+          Une journée rien qu'à nous,
+          sans regarder l'heure.
+        </p>
+
+      </div>
+
+    </div>
+
+    <button class="btn" onclick="finishChoice()">
+      Valider mes choix ❤️
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ==================================================
+     SCÈNE 6 — FINAL
+================================================== -->
+
+<section class="scene" id="scene6">
+
+  <div class="final-box">
+
+    <div class="final-heart">
+      ❤️
+    </div>
+
+    <h1>Joyeux anniversaire Licia 🎂</h1>
+
+    <p>
+      Peu importe les cadeaux que tu as choisis,
+      le plus important pour moi reste la personne
+      qui se trouve derrière ces choix.
+    </p>
+
+    <p>
+      Je te souhaite une année remplie de bonheur,
+      de réussite, de paix et de belles surprises.
+    </p>
+
+    <p>
+      Que Dieu veille sur toi, te protège
+      et t'accompagne dans tout ce que tu entreprendras.
+    </p>
+
+    <div class="final-signature">
+      Merci d'exister ma chérie ❤️<br><br>
+      <strong>5201314</strong>
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function goToScene(number){
+
+  document.querySelectorAll(".scene").forEach(scene=>{
+    scene.classList.remove("active");
+  });
+
+  const nextScene=document.getElementById("scene"+number);
+
+  if(nextScene){
+    nextScene.classList.add("active");
+  }
+
+  window.scrollTo(0,0);
+}
+
+
+/* =========================
+   ENVELOPPE
+========================= */
+
+const envelope=document.getElementById("envelope");
+
+envelope.addEventListener("click",()=>{
+
+  envelope.classList.add("open");
+
+  setTimeout(()=>{
+    goToScene(2);
+  },1200);
+
+});
+
+
+/* =========================
+   CADEAUX
+========================= */
+
+let selectedGifts=[];
+
+function selectGift(element,name){
+
+  const index=selectedGifts.indexOf(name);
+
+  if(index!==-1){
+
+    selectedGifts.splice(index,1);
+    element.classList.remove("selected");
+
+  }else{
+
+    if(selectedGifts.length>=2){
+
+      alert("Tu peux choisir maximum 2 cadeaux ❤️");
+      return;
 
     }
 
-  </script>
+    selectedGifts.push(name);
+    element.classList.add("selected");
+
+  }
+
+  document.getElementById("counter").textContent=
+    selectedGifts.length;
+
+}
+
+
+/* =========================
+   VALIDATION
+========================= */
+
+function finishChoice(){
+
+  if(selectedGifts.length===0){
+
+    alert("Choisis au moins un cadeau avant de continuer ❤️");
+    return;
+
+  }
+
+  goToScene(6);
+
+  launchConfetti();
+
+}
+
+
+/* =========================
+   CONFETTIS
+========================= */
+
+function launchConfetti(){
+
+  const symbols=["❤️","✨","💗","💕","🎉","🌸"];
+
+  for(let i=0;i<45;i++){
+
+    const piece=document.createElement("div");
+
+    piece.className="confetti";
+
+    piece.textContent=
+      symbols[Math.floor(Math.random()*symbols.length)];
+
+    piece.style.left=
+      Math.random()*100+"vw";
+
+    piece.style.animationDuration=
+      (2+Math.random()*2)+"s";
+
+    piece.style.fontSize=
+      (12+Math.random()*15)+"px";
+
+    document.body.appendChild(piece);
+
+    setTimeout(()=>{
+      piece.remove();
+    },4000);
+
+  }
+
+}
+
+</script>
 
 </body>
-</html>
+  </html>
