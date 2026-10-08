@@ -234,7 +234,7 @@ body{
     opacity:0;
   }
 }
-
+  
 .open-text{
   margin-top:35px;
   font-size:22px;
@@ -870,7 +870,7 @@ const envelope=document.getElementById("envelope");
 envelope.addEventListener("click",()=>{
 
   envelope.classList.add("open");
-
+bgMusic.play().catch(()=>{});
   setTimeout(()=>{
     goToScene(2);
   },1200);
