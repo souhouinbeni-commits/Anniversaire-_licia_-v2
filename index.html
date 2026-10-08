@@ -82,7 +82,7 @@ body{
 
 #scene1{
   background:
-  radial-gradient(circle at 50% 35%,#ffd9e8 0%,#f8a9c5 35%,#df6f9d 75%,#b83f72 100%);
+    radial-gradient(circle at 50% 35%,#ffd9e8 0%,#f8a9c5 35%,#df6f9d 75%,#b83f72 100%);
 }
 
 .glow{
@@ -234,7 +234,7 @@ body{
     opacity:0;
   }
 }
-  
+
 .open-text{
   margin-top:35px;
   font-size:22px;
@@ -293,7 +293,7 @@ body{
 }
 
 /* =========================
-   SCÈNE 3 — SOUVENIRS
+   SCÈNE 3
 ========================= */
 
 #scene3{
@@ -340,11 +340,6 @@ body{
   object-fit:cover;
 }
 
-.photo span{
-  padding:20px;
-  opacity:.8;
-}
-
 @media(max-width:650px){
   .photos{
     grid-template-columns:1fr;
@@ -356,7 +351,7 @@ body{
 }
 
 /* =========================
-   SCÈNE 4 — VIDÉO
+   SCÈNE 4
 ========================= */
 
 #scene4{
@@ -386,9 +381,6 @@ body{
   border-radius:20px;
   overflow:hidden;
   box-shadow:0 20px 50px rgba(0,0,0,.5);
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
 .video-container video{
@@ -397,13 +389,8 @@ body{
   object-fit:contain;
 }
 
-.video-placeholder{
-  padding:30px;
-  opacity:.65;
-}
-
 /* =========================
-   SCÈNE 5 — CADEAUX
+   SCÈNE 5
 ========================= */
 
 #scene5{
@@ -421,7 +408,7 @@ body{
   margin-bottom:10px;
 }
 
-.gift-box .instruction{
+.instruction{
   margin-bottom:25px;
   opacity:.9;
 }
@@ -487,7 +474,7 @@ body{
 }
 
 /* =========================
-   SCÈNE 6 — FINAL
+   SCÈNE 6
 ========================= */
 
 #scene6{
@@ -531,7 +518,7 @@ body{
 }
 
 /* =========================
-   PETITS FEUX
+   CONFETTIS
 ========================= */
 
 .confetti{
@@ -548,14 +535,34 @@ body{
     transform:translateY(110vh) rotate(720deg);
   }
 }
+
+/* =========================
+   BOUTON MUSIQUE
+========================= */
+
+#musicToggle{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:200;
+  width:48px;
+  height:48px;
+  border:none;
+  border-radius:50%;
+  background:rgba(169,47,97,.9);
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
 </style>
 </head>
 
 <body>
 
-<!-- ==================================================
-     SCÈNE 1 — ENVELOPPE
-================================================== -->
+<!-- =========================
+     SCÈNE 1
+========================= -->
 
 <section class="scene active" id="scene1">
 
@@ -577,15 +584,12 @@ body{
     <div class="envelope-container" id="envelope">
 
       <div class="envelope">
-
         <div class="inside"></div>
-
         <div class="flap"></div>
 
         <div class="seal">
           ❤️
         </div>
-
       </div>
 
     </div>
@@ -603,9 +607,9 @@ body{
 </section>
 
 
-<!-- ==================================================
-     SCÈNE 2 — MESSAGE
-================================================== -->
+<!-- =========================
+     SCÈNE 2
+========================= -->
 
 <section class="scene" id="scene2">
 
@@ -644,9 +648,9 @@ body{
 </section>
 
 
-<!-- ==================================================
-     SCÈNE 3 — SOUVENIRS
-================================================== -->
+<!-- =========================
+     SCÈNE 3
+========================= -->
 
 <section class="scene" id="scene3">
 
@@ -661,17 +665,14 @@ body{
 
     <div class="photos">
 
-      <!-- REMPLACE photo1.jpg par ton vrai fichier -->
       <div class="photo">
         <img src="photo1.jpg" alt="Souvenir 1">
       </div>
 
-      <!-- REMPLACE photo2.jpg par ton vrai fichier -->
       <div class="photo">
         <img src="photo2.jpg" alt="Souvenir 2">
       </div>
 
-      <!-- REMPLACE photo3.jpg par ton vrai fichier -->
       <div class="photo">
         <img src="photo3.jpg" alt="Souvenir 3">
       </div>
@@ -687,9 +688,9 @@ body{
 </section>
 
 
-<!-- ==================================================
-     SCÈNE 4 — VIDÉO
-================================================== -->
+<!-- =========================
+     SCÈNE 4
+========================= -->
 
 <section class="scene" id="scene4">
 
@@ -703,16 +704,10 @@ body{
 
     <div class="video-container">
 
-      <!-- REMPLACE anniversaire.mp4 par ta vraie vidéo -->
-      <video controls playsinline>
+      <video id="birthdayVideo" controls playsinline preload="metadata">
         <source src="anniversaire.mp4" type="video/mp4">
-
         Ton navigateur ne peut pas lire cette vidéo.
       </video>
-
-      <div class="video-placeholder">
-        Ta vidéo apparaîtra ici 🎬
-      </div>
 
     </div>
 
@@ -727,9 +722,9 @@ body{
 </section>
 
 
-<!-- ==================================================
-     SCÈNE 5 — CHOIX DES CADEAUX
-================================================== -->
+<!-- =========================
+     SCÈNE 5
+========================= -->
 
 <section class="scene" id="scene5">
 
@@ -799,9 +794,9 @@ body{
 </section>
 
 
-<!-- ==================================================
-     SCÈNE 6 — FINAL
-================================================== -->
+<!-- =========================
+     SCÈNE 6
+========================= -->
 
 <section class="scene" id="scene6">
 
@@ -838,6 +833,11 @@ body{
 
 </section>
 
+
+<!-- =========================
+     MUSIQUE
+========================= -->
+
 <audio id="bgMusic" loop preload="auto">
   <source src="musique.mp3" type="audio/mpeg">
 </audio>
@@ -847,17 +847,24 @@ body{
 
 <script>
 
+let selectedGifts = [];
+
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
+const envelope = document.getElementById("envelope");
+
+
 /* =========================
    NAVIGATION
 ========================= */
 
 function goToScene(number){
 
-  document.querySelectorAll(".scene").forEach(scene=>{
+  document.querySelectorAll(".scene").forEach(function(scene){
     scene.classList.remove("active");
   });
 
-  const nextScene=document.getElementById("scene"+number);
+  const nextScene = document.getElementById("scene" + number);
 
   if(nextScene){
     nextScene.classList.add("active");
@@ -871,13 +878,23 @@ function goToScene(number){
    ENVELOPPE
 ========================= */
 
-const envelope=document.getElementById("envelope");
+envelope.addEventListener("click", function(){
 
-envelope.addEventListener("click",()=>{
+  if(envelope.classList.contains("open")){
+    return;
+  }
 
   envelope.classList.add("open");
-bgMusic.play().catch(()=>{});
-  setTimeout(()=>{
+
+  bgMusic.volume = 0.22;
+
+  bgMusic.play().catch(function(){
+    musicToggle.textContent = "🎵";
+  });
+
+  musicToggle.textContent = "🔊";
+
+  setTimeout(function(){
     goToScene(2);
   },1200);
 
@@ -885,23 +902,45 @@ bgMusic.play().catch(()=>{});
 
 
 /* =========================
+   MUSIQUE
+========================= */
+
+function toggleMusic(){
+
+  if(bgMusic.paused){
+
+    bgMusic.play().then(function(){
+      musicToggle.textContent = "🔊";
+    }).catch(function(){
+      musicToggle.textContent = "🎵";
+    });
+
+  }else{
+
+    bgMusic.pause();
+    musicToggle.textContent = "🎵";
+
+  }
+
+}
+
+
+/* =========================
    CADEAUX
 ========================= */
 
-let selectedGifts=[];
-
 function selectGift(element,name){
 
-  const index=selectedGifts.indexOf(name);
+  const index = selectedGifts.indexOf(name);
 
-  if(index!==-1){
+  if(index !== -1){
 
     selectedGifts.splice(index,1);
     element.classList.remove("selected");
 
   }else{
 
-    if(selectedGifts.length>=2){
+    if(selectedGifts.length >= 2){
 
       alert("Tu peux choisir maximum 2 cadeaux ❤️");
       return;
@@ -913,7 +952,7 @@ function selectGift(element,name){
 
   }
 
-  document.getElementById("counter").textContent=
+  document.getElementById("counter").textContent =
     selectedGifts.length;
 
 }
@@ -925,7 +964,7 @@ function selectGift(element,name){
 
 function finishChoice(){
 
-  if(selectedGifts.length===0){
+  if(selectedGifts.length === 0){
 
     alert("Choisis au moins un cadeau avant de continuer ❤️");
     return;
@@ -933,7 +972,6 @@ function finishChoice(){
   }
 
   goToScene(6);
-
   launchConfetti();
 
 }
@@ -945,54 +983,44 @@ function finishChoice(){
 
 function launchConfetti(){
 
-  const symbols=["❤️","✨","💗","💕","🎉","🌸"];
+  const symbols = [
+    "❤️",
+    "✨",
+    "💗",
+    "💕",
+    "🎉",
+    "🌸"
+  ];
 
-  for(let i=0;i<45;i++){
+  for(let i = 0; i < 45; i++){
 
-    const piece=document.createElement("div");
+    const piece = document.createElement("div");
 
-    piece.className="confetti";
+    piece.className = "confetti";
 
-    piece.textContent=
-      symbols[Math.floor(Math.random()*symbols.length)];
+    piece.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
 
-    piece.style.left=
-      Math.random()*100+"vw";
+    piece.style.left =
+      Math.random() * 100 + "vw";
 
-    piece.style.animationDuration=
-      (2+Math.random()*2)+"s";
+    piece.style.animationDuration =
+      (2 + Math.random() * 2) + "s";
 
-    piece.style.fontSize=
-      (12+Math.random()*15)+"px";
+    piece.style.fontSize =
+      (12 + Math.random() * 15) + "px";
 
     document.body.appendChild(piece);
 
-    setTimeout(()=>{
+    setTimeout(function(){
       piece.remove();
     },4000);
 
   }
 
 }
-let bgMusic;
-let musicToggle;
 
-window.addEventListener("DOMContentLoaded", () => {
-  bgMusic = document.getElementById("bgMusic");
-  musicToggle = document.getElementById("musicToggle");
-  bgMusic.volume = 0.22;
-});
-
-function toggleMusic(){
-  if(bgMusic.paused){
-    bgMusic.play();
-    musicToggle.textContent = "🔊";
-  }else{
-    bgMusic.pause();
-    musicToggle.textContent = "🎵";
-  }
-}
 </script>
-  
+
 </body>
   </html>
