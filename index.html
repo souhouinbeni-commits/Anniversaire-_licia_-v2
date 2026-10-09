@@ -28,7 +28,7 @@ p{color:#e2dce8;font-size:16px;line-height:1.8}
 .pink{color:var(--pink2)}
 .purple{color:#c5a0ff}
 .small{font-size:13px;color:#aaa1b3}
-.btn{border:0;padding:14px 22px;border-radius:999px;color:white;background:linear-gradient(120deg,#ff579b,#a64fff);font-size:16px;font-weight:bold;cursor:pointer;box-shadow:0 8px 25px #e13b8630;transition:transform .25s,filter .25s,box-shadow .25s}
+.btn{border:0;padding:14px 22px;border-radius:999px;color:white;background:linear-gradient(120deg,#ff579b,#a64fff);font-size:16px;font-weight:bold;cursor:pointer;box-shadow:0 8px 25px #e13b8630;transition:filter .25s,box-shadow .25s}
 .btn:hover{filter:brightness(1.1)}
 .btn.secondary{background:#ffffff0d;border:1px solid #ffffff30;box-shadow:none}
 .btn:disabled{opacity:.4;cursor:not-allowed}
@@ -64,14 +64,73 @@ video{width:100%;display:block;max-height:480px}
 .reason h3{margin-bottom:8px}
 .reason p{font-size:15px}
 
-/* OUI / NON : POSITIONNEMENT ET DÉPLACEMENT CORRIGÉS */
-.question-zone{height:310px;min-height:310px;position:relative;margin-top:20px;overflow:hidden;border-radius:20px}
-.yes-no{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-#yesBtn,#noBtn{position:absolute;top:50%;white-space:nowrap;pointer-events:auto;transform:translate(-50%,-50%);transition:left .22s ease,top .22s ease,transform .25s ease,opacity .2s;z-index:6}
-#yesBtn{left:32%;transform:translate(-50%,-50%) scale(1);transform-origin:center}
-#noBtn{left:70%;transform:translate(-50%,-50%);z-index:7}
-.no-message{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:25px;background:#350d2c;border:1px solid #ff579b;color:#ffb0d1;border-radius:20px;opacity:0;pointer-events:none;transition:.3s;z-index:2}
-.no-message.show{opacity:1}
+/* OUI / NON : BOUTONS SÉPARÉS ET MESSAGE SOUS LES BOUTONS */
+.question-zone{
+  position:relative;
+  width:100%;
+  height:auto;
+  min-height:0;
+  margin-top:22px;
+  overflow:visible;
+  border-radius:20px;
+}
+
+.yes-no{
+  position:relative;
+  width:100%;
+  height:95px;
+  pointer-events:none;
+}
+
+#yesBtn,#noBtn{
+  position:absolute;
+  top:50%;
+  white-space:nowrap;
+  pointer-events:auto;
+  transform:translate(-50%,-50%);
+  transform-origin:center;
+  transition:left .22s ease,top .22s ease,transform .25s ease,opacity .2s ease;
+  z-index:3;
+}
+
+#yesBtn{
+  left:28%;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+#noBtn{
+  left:72%;
+  transform:translate(-50%,-50%);
+  z-index:4;
+}
+
+.no-message{
+  position:relative;
+  inset:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:82px;
+  margin-top:8px;
+  padding:16px;
+  box-sizing:border-box;
+  background:#350d2c;
+  border:1px solid #ff579b;
+  color:#ffb0d1;
+  border-radius:20px;
+  text-align:center;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .3s ease,visibility .3s ease;
+  z-index:1;
+}
+
+.no-message.show{
+  opacity:1;
+  visibility:visible;
+}
 
 .gift-grid{display:grid;gap:14px;margin:25px 0}
 .gift{position:relative;padding:20px;text-align:left;border-radius:20px;background:#ffffff0b;border:2px solid #ffffff15;cursor:pointer;transition:.3s}
@@ -136,7 +195,11 @@ audio{width:100%;margin-top:15px}
  .card{padding:25px 17px}
  .btn{padding:13px 17px}
  .photo-main{max-height:380px}
- .question-zone{height:310px;min-height:310px}
+ .yes-no{height:90px}
+ #yesBtn,#noBtn{font-size:15px;padding:12px 15px}
+ #yesBtn{left:28%}
+ #noBtn{left:72%}
+ .no-message{min-height:82px;padding:14px 10px}
  .teddy{transform:scale(.9);transform-origin:bottom center}
 }
 </style>
@@ -319,8 +382,6 @@ audio{width:100%;margin-top:15px}
     Ton navigateur ne peut pas lire cet audio. Vérifie le fichier demande.m4a.
    </audio>
   </div>
-
-  <!-- Le long texte sous l'audio et la note technique ont été retirés -->
 
   <div class="proposal-question">
    <div style="font-size:45px;margin-bottom:12px">💍❤️</div>
@@ -570,23 +631,22 @@ function animateReasons(){
  });
 }
 
-/* QUESTION OUI / NON : MÉCANISME CORRIGÉ */
+/* QUESTION OUI / NON : VERSION CORRIGÉE */
 function resetYesNo(){
  noClicks=0;
 
- const zone=document.getElementById("questionZone");
  const noBtn=document.getElementById("noBtn");
  const yesBtn=document.getElementById("yesBtn");
  const message=document.getElementById("noMessage");
 
  noBtn.style.display="";
  noBtn.style.opacity="1";
- noBtn.style.left="70%";
+ noBtn.style.left="72%";
  noBtn.style.top="50%";
  noBtn.style.transform="translate(-50%,-50%)";
 
  yesBtn.textContent="OUI ❤️";
- yesBtn.style.left="32%";
+ yesBtn.style.left="28%";
  yesBtn.style.top="50%";
  yesBtn.style.transform="translate(-50%,-50%) scale(1)";
 
@@ -606,35 +666,36 @@ function noClicked(){
  const noBtn=document.getElementById("noBtn");
  const yesBtn=document.getElementById("yesBtn");
  const message=document.getElementById("noMessage");
- const zone=document.getElementById("questionZone");
+ const buttonArea=document.querySelector("#questionZone .yes-no");
 
- /* Le bouton OUI grossit à chaque clic */
- const scale=Math.min(1+noClicks*.18,2.3);
+ /* OUI grossit progressivement sans recouvrir le message */
+ const scale=Math.min(1+noClicks*.12,1.8);
  yesBtn.style.transform=`translate(-50%,-50%) scale(${scale})`;
 
- /* Le bouton NON saute à une nouvelle position dans la zone */
- const padding=12;
+ /* NON se déplace uniquement dans la partie droite */
+ const padding=8;
  const halfW=noBtn.offsetWidth/2;
  const halfH=noBtn.offsetHeight/2;
 
- const minX=halfW+padding;
- const maxX=Math.max(minX,zone.clientWidth-halfW-padding);
+ const minX=Math.max(halfW+padding,buttonArea.clientWidth*.53);
+ const maxX=Math.max(minX,buttonArea.clientWidth-halfW-padding);
  const minY=halfH+padding;
- const maxY=Math.max(minY,zone.clientHeight-halfH-padding);
+ const maxY=Math.max(minY,buttonArea.clientHeight-halfH-padding);
 
  noBtn.style.left=(minX+Math.random()*(maxX-minX))+"px";
  noBtn.style.top=(minY+Math.random()*(maxY-minY))+"px";
 
+ /* Le message apparaît sous les boutons */
  message.classList.add("show");
 
  if(noClicks===1){
-  message.innerHTML="<div><strong>NON ? 😭</strong><br><br>Tu es vraiment sûre ? 😂❤️</div>";
+  message.innerHTML="<div><strong>NON ? 😭</strong><br>Tu es vraiment sûre ? 😂❤️</div>";
  }else if(noClicks===2){
-  message.innerHTML="<div><strong>Encore NON ? 😭😂</strong><br><br>Regarde le OUI qui grandit 👀❤️</div>";
+  message.innerHTML="<div><strong>Encore NON ? 😭😂</strong><br>Regarde le OUI qui grandit 👀❤️</div>";
  }else if(noClicks<5){
-  message.innerHTML="<div><strong>Essaie encore 😂❤️</strong><br><br>Tu crois vraiment pouvoir échapper au OUI ? 🤭</div>";
+  message.innerHTML="<div><strong>Essaie encore 😂❤️</strong><br>Tu crois vraiment pouvoir échapper au OUI ? 🤭</div>";
  }else{
-  message.innerHTML="<div><strong>Bon... 😭❤️</strong><br><br>Le bouton OUI veut vraiment gagner 😂</div>";
+  message.innerHTML="<div><strong>Bon... 😭❤️</strong><br>Le bouton OUI veut vraiment gagner 😂</div>";
  }
 
  if(noClicks>=5){
@@ -644,8 +705,8 @@ function noClicked(){
 
  if(noClicks>=7){
   noBtn.style.display="none";
-  yesBtn.style.transform="translate(-50%,-50%) scale(2.1)";
-  message.innerHTML="<div><strong>Il ne reste plus qu'un choix 😂❤️</strong><br><br>Appuie sur OUI, ma vie 🤭</div>";
+  yesBtn.style.transform="translate(-50%,-50%) scale(1.8)";
+  message.innerHTML="<div><strong>Il ne reste plus qu'un choix 😂❤️</strong><br>Appuie sur OUI, ma vie 🤭</div>";
  }
 }
 
