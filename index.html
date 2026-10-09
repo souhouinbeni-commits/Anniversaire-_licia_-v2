@@ -3,704 +3,1007 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#100719">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pour Licia ❤️</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
- --pink:#ff579b;
- --pink2:#ff9fc7;
- --purple:#a66cff;
- --blue:#6b9cff;
- --white:#fff;
+:root {
+  --pink: #ff79ad;
+  --light-pink: #ffe1ed;
+  --blue: #9ccaff;
+  --dark: #171322;
+  --white: #fff;
 }
-body{
- font-family:Arial,sans-serif;
- background:#08060d;
- color:white;
- overflow-x:hidden;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-button{font-family:inherit}
-.scene{
- min-height:100vh;width:100%;display:none;
- align-items:center;justify-content:center;
- padding:30px 16px;position:relative;overflow:hidden;
- background:
- radial-gradient(ellipse at 10% 10%,#70224b35,transparent 50%),
- radial-gradient(ellipse at 90% 90%,#39266c40,transparent 50%),
- linear-gradient(145deg,#08060d,#160b20 55%,#08060d);
+
+body {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color: white;
+  background: #11101b;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
-.scene.active{display:flex;animation:sceneEnter .9s ease both}
-@keyframes sceneEnter{
- from{opacity:0;transform:translateY(18px) scale(.99);filter:blur(4px)}
- to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+
+button, input, textarea {
+  font: inherit;
 }
-.glow{
- position:absolute;width:280px;height:280px;border-radius:50%;
- filter:blur(100px);opacity:.2;pointer-events:none;
- animation:glowMove 9s ease-in-out infinite alternate;
+
+button {
+  border: none;
+  cursor: pointer;
+  transition: transform .2s, opacity .2s;
 }
-.one{top:-120px;left:-120px;background:var(--pink)}
-.two{bottom:-130px;right:-100px;background:var(--purple);animation-delay:-4s}
-.three{top:40%;right:-200px;background:var(--blue)}
-@keyframes glowMove{to{transform:translate(40px,35px) scale(1.2)}}
-.card{
- width:100%;max-width:720px;padding:30px 22px;
- border-radius:30px;background:#ffffff0b;
- border:1px solid #ffffff20;backdrop-filter:blur(18px);
- box-shadow:0 25px 90px #0008;text-align:center;
- position:relative;z-index:2;
+
+button:hover {
+  transform: scale(1.04);
 }
-h1{font-size:clamp(35px,9vw,64px);line-height:1.12;margin-bottom:18px}
-h2{font-size:clamp(27px,7vw,43px);margin-bottom:18px;line-height:1.2}
-h3{font-size:20px}
-p{color:#e2dce8;font-size:16px;line-height:1.8}
-.pink{color:var(--pink2)}
-.purple{color:#c5a0ff}
-.small{font-size:13px;color:#aaa1b3}
-.btn{
- border:0;padding:14px 22px;border-radius:999px;color:white;
- background:linear-gradient(120deg,#ff579b,#a64fff);
- font-size:16px;font-weight:bold;cursor:pointer;
- box-shadow:0 8px 25px #e13b8630;
- transition:transform .25s,filter .25s,box-shadow .25s;
+
+.scene {
+  display: none;
+  min-height: 100vh;
+  padding: 28px 18px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 15%, #3a234d 0, transparent 36%),
+    radial-gradient(circle at 85% 85%, #192c50 0, transparent 38%),
+    linear-gradient(145deg, #171322, #101a2b);
 }
-.btn:hover{transform:translateY(-3px);filter:brightness(1.1)}
-.btn.secondary{
- background:#ffffff0d;border:1px solid #ffffff30;
- box-shadow:none;
+
+.scene.active {
+  display: flex;
+  animation: appear .65s ease both;
 }
-.btn:disabled{opacity:.4;cursor:not-allowed}
-.nav{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:25px}
-#musicToggle{
- position:fixed;top:14px;right:14px;width:47px;height:47px;
- border-radius:50%;border:1px solid #ffffff30;
- background:#17101edb;color:white;font-size:20px;z-index:1000;
- backdrop-filter:blur(10px);
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-.countdown{font-size:65px;font-weight:bold;color:var(--pink);margin:15px}
-.envelope{
- width:260px;height:175px;position:relative;cursor:pointer;
- margin:25px auto;filter:drop-shadow(0 15px 30px #ff287944);
+
+h1 {
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  color: #ffb4d1;
+  margin-bottom: 20px;
+  text-shadow: 0 0 24px #ff79ad44;
 }
-.envelope-body{position:absolute;inset:0;background:linear-gradient(145deg,#ff579b,#8b1bc1);border-radius:10px}
-.envelope-body:before{
- content:"";position:absolute;bottom:0;left:0;
- border-style:solid;border-width:85px 130px 0 0;
- border-color:#d71661 transparent transparent;
+
+h2 {
+  font-size: clamp(1.5rem, 6vw, 2.3rem);
+  color: #ffc4dc;
+  margin-bottom: 18px;
 }
-.envelope-body:after{
- content:"";position:absolute;bottom:0;right:0;
- border-style:solid;border-width:0 130px 85px 0;
- border-color:transparent #a81b9b transparent;
+
+p {
+  line-height: 1.8;
+  font-size: 1.02rem;
+  max-width: 650px;
+  margin: 10px auto;
 }
-.flap{
- position:absolute;top:0;left:0;width:0;height:0;
- border-left:130px solid transparent;border-right:130px solid transparent;
- border-top:100px solid #ff91bd;transform-origin:top;
- transition:.8s;z-index:5;
+
+.small {
+  font-size: .88rem;
+  opacity: .8;
 }
-.envelope.open .flap{transform:rotateX(180deg)}
-.heart{
- position:absolute;top:60px;left:50%;transform:translateX(-50%);
- font-size:50px;z-index:7;transition:.7s;
+
+.heart {
+  color: #ff6fa8;
+  display: inline-block;
+  animation: heartbeat 1.3s infinite;
 }
-.envelope.open .heart{transform:translate(-50%,-80px) scale(1.4);opacity:0}
-.typewriter{
- text-align:left;white-space:pre-line;color:#eee;
- line-height:1.85;font-size:16px;min-height:180px;
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
 }
-.photo-album{margin:25px 0}
-.photo-main{
- width:100%;max-height:430px;object-fit:contain;
- border-radius:16px;padding:8px;background:#f5f0e8;
- box-shadow:0 18px 40px #0006;
+
+.main-btn, .secondary-btn {
+  padding: 14px 22px;
+  border-radius: 30px;
+  margin: 9px 5px;
+  font-weight: bold;
+  font-size: 1rem;
 }
-.photo-caption{margin-top:15px;font-style:italic;color:#ffb2ce}
-.photo-thumbs{display:flex;justify-content:center;gap:12px;margin-top:18px}
-.photo-thumbs img{
- width:85px;height:85px;object-fit:cover;border-radius:12px;
- opacity:.6;cursor:pointer;border:2px solid transparent;
+
+.main-btn {
+  color: #251324;
+  background: linear-gradient(135deg, #ff9ec5, #ffcee2);
+  box-shadow: 0 7px 25px #ff79ad30;
 }
-.photo-thumbs img.active{opacity:1;border-color:var(--pink)}
-.video-box{
- margin:24px 0;border-radius:20px;overflow:hidden;
- background:#000;border:1px solid #ffffff20;
- box-shadow:0 15px 45px #0008;
+
+.secondary-btn {
+  color: white;
+  background: #ffffff16;
+  border: 1px solid #ffffff40;
 }
-video{width:100%;display:block;max-height:480px}
-.video-caption{
- text-align:left;margin-top:20px;padding:20px;
- border-radius:20px;background:linear-gradient(135deg,#ff579b12,#a66cff12);
- border:1px solid #ff9fc72b;
+
+.card {
+  width: min(100%, 650px);
+  padding: 24px 20px;
+  border-radius: 24px;
+  background: #ffffff0c;
+  border: 1px solid #ffffff20;
+  box-shadow: 0 12px 40px #00000020;
+  backdrop-filter: blur(8px);
+  margin: 12px auto;
 }
-.video-caption p{margin:8px 0}
-.reasons{display:grid;gap:14px;margin-top:25px}
-.reason{
- padding:22px;border-radius:20px;background:#ffffff0d;
- border:1px solid #ffffff15;opacity:0;transform:translateY(15px);
+
+.letter {
+  color: #fcecf4;
+  white-space: pre-line;
+  text-align: left;
 }
-.reason.show{animation:reasonIn .7s forwards}
-@keyframes reasonIn{to{opacity:1;transform:translateY(0)}}
-.reason-icon{font-size:35px;margin-bottom:10px}
-.reason h3{margin-bottom:8px}
-.reason p{font-size:15px}
-.question-zone{
- min-height:300px;position:relative;margin-top:20px;
- display:flex;align-items:center;justify-content:center;
- overflow:hidden;border-radius:20px;
+
+.big-heart {
+  font-size: 5rem;
+  margin-bottom: 15px;
+  animation: heartbeat 1.5s infinite;
 }
-.yes-no{display:flex;align-items:center;justify-content:center;gap:18px;width:100%}
-#yesBtn,#noBtn{position:relative;z-index:6}
-.no-message{
- position:absolute;inset:0;display:flex;align-items:center;
- justify-content:center;padding:25px;background:#350d2c;
- border:1px solid #ff579b;color:#ffb0d1;border-radius:20px;
- opacity:0;pointer-events:none;transition:.3s;z-index:2;
+
+.envelope {
+  font-size: 6rem;
+  margin: 20px 0;
+  filter: drop-shadow(0 0 25px #ff79ad55);
+  animation: float 2.5s ease-in-out infinite;
 }
-.no-message.show{opacity:1}
-.gift-grid{display:grid;gap:14px;margin:25px 0}
-.gift{
- position:relative;padding:20px;text-align:left;border-radius:20px;
- background:#ffffff0b;border:2px solid #ffffff15;cursor:pointer;
- transition:.3s;
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
-.gift.selected{border-color:var(--pink);background:#ff2f811f}
-.gift input{position:absolute;opacity:0}
-.gift-title{font-size:18px;font-weight:bold;padding-right:30px}
-.gift-desc{margin-top:8px;color:#aaa;font-size:14px;line-height:1.6}
-.check{
- position:absolute;right:15px;top:15px;width:27px;height:27px;
- border-radius:50%;border:1px solid #777;display:flex;
- align-items:center;justify-content:center;
+
+.pictures {
+  width: min(100%, 550px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 14px auto;
 }
-.gift.selected .check{background:var(--pink);border-color:var(--pink)}
-textarea{
- width:100%;min-height:180px;resize:vertical;margin:22px 0;
- padding:18px;border-radius:18px;border:1px solid #ffffff25;
- background:#ffffff0d;color:white;font-size:16px;line-height:1.6;
+
+.pictures img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+  border-radius: 18px;
+  background: #fff;
+  padding: 5px;
+  box-shadow: 0 10px 35px #0005;
 }
-textarea::placeholder{color:#a9a0b0}
-.sent-icon,.final-heart{font-size:75px;animation:beat 1.3s infinite}
-@keyframes beat{50%{transform:scale(1.13)}}
-.final-text{margin-top:25px;line-height:1.9}
-.code{margin-top:25px;font-size:29px;letter-spacing:8px;color:var(--pink);font-weight:bold}
-.toast{
- position:fixed;left:50%;bottom:25px;transform:translate(-50%,120px);
- padding:14px 20px;border-radius:30px;background:#17101e;
- border:1px solid #ffffff25;z-index:2000;transition:.4s;
- text-align:center;width:max-content;max-width:90%;
+
+video {
+  width: min(100%, 520px);
+  max-height: 65vh;
+  border-radius: 20px;
+  margin: 15px auto;
+  background: #000;
+  box-shadow: 0 10px 35px #0006;
 }
-.toast.show{transform:translate(-50%,0)}
-.proposal-symbol{font-size:68px;margin:12px 0;animation:beat 1.6s infinite}
-.proposal-text{
- text-align:left;white-space:pre-line;line-height:1.9;
- background:#ffffff08;border:1px solid #ffffff17;
- border-radius:20px;padding:20px;margin:22px 0;
+
+.reasons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: min(100%, 600px);
+  margin: 15px auto;
 }
-.audio-box{
- margin:22px 0;padding:20px;border-radius:22px;
- background:linear-gradient(135deg,#ff579b18,#8e53ff18);
- border:1px solid #ff9fc733;
+
+.reason {
+  border: 1px solid #ffb6d333;
+  background: #ffb6d310;
+  border-radius: 16px;
+  padding: 15px;
+  text-align: left;
+  line-height: 1.65;
 }
-audio{width:100%;margin-top:15px}
-.proposal-question{
- margin:25px 0;padding:23px 15px;border-radius:22px;
- background:linear-gradient(135deg,#ff579b16,#a66cff16);
- border:1px solid #ff9fc744;
+
+.choice {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  text-align: left;
+  border: 1px solid #ffffff25;
+  background: #ffffff0b;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 12px 0;
+  cursor: pointer;
 }
-.proposal-question p{font-size:clamp(21px,5vw,28px);font-weight:bold;color:white}
-.proposal-note{font-size:13px;color:#aaa1b3;margin-top:15px}
-.sparkle{display:inline-block;animation:sparkle 2s infinite}
-@keyframes sparkle{50%{transform:rotate(15deg) scale(1.2)}}
-.confetti{
- position:fixed;top:-30px;z-index:3000;pointer-events:none;
- animation:fall linear forwards;
+
+.choice input {
+  margin-top: 5px;
+  accent-color: #ff79ad;
+  transform: scale(1.2);
 }
-@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
-@media(max-width:600px){
- .card{padding:25px 17px}
- .yes-no{gap:10px}
- .btn{padding:13px 17px}
- .photo-main{max-height:380px}
- .proposal-text{padding:16px}
+
+.choice strong {
+  color: #ffbdd7;
+  display: block;
+  margin-bottom: 5px;
+}
+
+textarea {
+  width: min(100%, 550px);
+  min-height: 140px;
+  resize: vertical;
+  border-radius: 16px;
+  padding: 15px;
+  background: #ffffff12;
+  border: 1px solid #ffffff40;
+  color: white;
+  outline: none;
+  margin: 14px auto;
+}
+
+textarea::placeholder {
+  color: #d5c8d7;
+}
+
+audio {
+  width: min(100%, 450px);
+  margin: 20px auto;
+}
+
+.music-btn {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  right: 12px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  background: #ff9ec5;
+  color: #251324;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 20px #0004;
+}
+
+#status {
+  min-height: 25px;
+  color: #ffd1e3;
+  font-size: .9rem;
+}
+
+/* SCÈNE DES DEUX OURS */
+
+.bear-scene {
+  background:
+    radial-gradient(ellipse at 50% 100%, #5a365b 0, transparent 55%),
+    linear-gradient(180deg, #10182d, #27203b 70%, #45304c);
+}
+
+.moon {
+  position: absolute;
+  top: 8%;
+  right: 12%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff0c7;
+  box-shadow: 0 0 45px #fff0c755;
+}
+
+.star {
+  position: absolute;
+  color: #fff0d9;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .3; transform: scale(.8); }
+  to { opacity: 1; transform: scale(1.15); }
+}
+
+.path {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 31%;
+  background: linear-gradient(180deg, #5c4666, #34283e);
+  clip-path: polygon(36% 0, 64% 0, 100% 100%, 0 100%);
+  opacity: .8;
+}
+
+.cross {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 85px;
+  background: linear-gradient(90deg, #f8d9a3, #fff1d0, #c69b64);
+  border-radius: 4px;
+  box-shadow: 0 0 35px #ffe4a366;
+}
+
+.cross::before {
+  content: "";
+  position: absolute;
+  width: 48px;
+  height: 11px;
+  background: #f5d9a8;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
+}
+
+.bears {
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  margin-top: 100px;
+  animation: walk 3s ease-in-out infinite;
+}
+
+@keyframes walk {
+  0%, 100% { transform: translateY(0) translateX(-5px); }
+  50% { transform: translateY(-5px) translateX(5px); }
+}
+
+.bear {
+  position: relative;
+  width: 100px;
+  height: 125px;
+  animation: sway 1.1s ease-in-out infinite alternate;
+}
+
+.bear.pink {
+  animation-delay: .3s;
+}
+
+@keyframes sway {
+  from { transform: rotate(-3deg); }
+  to { transform: rotate(3deg); }
+}
+
+.bear .ear {
+  position: absolute;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: inherit;
+  border: 3px solid #ffffff70;
+}
+
+.bear .ear.left { left: 10px; }
+.bear .ear.right { right: 10px; }
+
+.bear .head {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  width: 80px;
+  height: 70px;
+  border-radius: 47% 47% 43% 43%;
+  background: inherit;
+  border: 3px solid #ffffff70;
+  z-index: 2;
+}
+
+.bear .muzzle {
+  position: absolute;
+  width: 31px;
+  height: 24px;
+  background: #fff4e8;
+  border-radius: 50%;
+  left: 50%;
+  bottom: 9px;
+  transform: translateX(-50%);
+}
+
+.bear .muzzle::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 6px;
+  border-radius: 50%;
+  background: #483443;
+  top: 6px;
+  left: 11px;
+}
+
+.bear .eye {
+  position: absolute;
+  width: 5px;
+  height: 7px;
+  background: #483443;
+  border-radius: 50%;
+  top: 27px;
+}
+
+.bear .eye.left { left: 23px; }
+.bear .eye.right { right: 23px; }
+
+.bear .body {
+  position: absolute;
+  width: 70px;
+  height: 64px;
+  left: 15px;
+  bottom: 0;
+  border-radius: 42% 42% 30% 30%;
+  background: inherit;
+  border: 3px solid #ffffff70;
+}
+
+.bear .arm {
+  position: absolute;
+  top: 76px;
+  width: 23px;
+  height: 38px;
+  border-radius: 20px;
+  background: inherit;
+  border: 3px solid #ffffff70;
+  z-index: 4;
+}
+
+.bear .arm.left { left: 4px; transform: rotate(20deg); }
+.bear .arm.right { right: 4px; transform: rotate(-35deg); }
+
+.bear.white { background: #fff1e6; }
+.bear.pink { background: #ffacd0; }
+
+.bear-caption {
+  z-index: 4;
+  margin-top: 25px;
+  max-width: 450px;
+}
+
+.final-heart {
+  font-size: 4rem;
+  animation: heartbeat 1.3s infinite;
+}
+
+@media (min-width: 600px) {
+  .reasons {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 </style>
 </head>
+
 <body>
 
+<button class="music-btn" id="musicToggle"
+        onclick="toggleMusic()" aria-label="Activer ou couper la musique">
+  🎵
+</button>
+
 <audio id="bgMusic" loop preload="auto">
- <source src="musique.mp3" type="audio/mpeg">
+  <source src="musique.mp3" type="audio/mpeg">
 </audio>
-<button id="musicToggle" onclick="toggleMusic()" aria-label="Musique">🎵</button>
-<div class="toast" id="toast"></div>
 
 <!-- SCÈNE 1 : ENVELOPPE -->
+
 <section class="scene active" id="scene1">
- <div class="glow one"></div><div class="glow two"></div>
- <div class="card">
-  <p class="small">Une petite surprise pour toi...</p>
-  <div class="countdown" id="countdown">3</div>
-  <h1>Pour toi<br><span class="pink">Licia ❤️</span></h1>
-  <p>Prends quelques minutes pour vivre cette petite surprise jusqu'au bout...</p>
-  <div class="envelope" id="envelope">
-   <div class="envelope-body"></div><div class="flap"></div><div class="heart">❤️</div>
-  </div>
-  <p class="pink">Appuie sur l'enveloppe 💌</p>
- </div>
+  <div class="big-heart">❤️</div>
+  <h1>Pour toi, ma Licia</h1>
+  <p>Ma vie, j'ai préparé quelque chose spécialement pour toi 🥹💗</p>
+  <div class="envelope">💌</div>
+  <p>Prends quelques minutes, installe-toi confortablement et ouvre ton petit cadeau</p>
+  <button class="main-btn" onclick="startSurprise()">
+    Ouvrir ma surprise 💗
+  </button>
+  <p class="small">Une petite surprise faite avec beaucoup d'amour</p>
 </section>
 
-<!-- SCÈNE 2 : ANNIVERSAIRE -->
+<!-- SCÈNE 2 : MESSAGE D'ANNIVERSAIRE -->
+
 <section class="scene" id="scene2">
- <div class="glow one"></div><div class="card">
-  <div style="font-size:60px">🎂</div>
-  <h1>Joyeux<br><span class="pink">anniversaire</span></h1>
-  <div class="typewriter" id="birthdayText"></div>
-  <div class="nav"><button class="btn" onclick="goToScene(3)">Continuer ❤️</button></div>
- </div>
+  <h1>Joyeux anniversaire, ma vie ❤️</h1>
+  <div class="card">
+    <p class="letter" id="birthdayText"></p>
+  </div>
+  <button class="main-btn" onclick="goToScene(3)">
+    Continuer 💌
+  </button>
 </section>
 
-<!-- SCÈNE 3 : PHOTOS -->
+<!-- SCÈNE 3 : LES DEUX CAPTURES ORIGINALES -->
+
 <section class="scene" id="scene3">
- <div class="glow two"></div><div class="card">
-  <p class="small">Quelques morceaux de notre histoire</p>
-  <h2>Nos petits <span class="pink">souvenirs</span> 📸</h2>
-  <p>Il y a des choses qu'on oublie avec le temps... et d'autres qu'on garde précieusement dans son cœur ❤️</p>
-  <div class="photo-album">
-   <img id="mainPhoto" class="photo-main" src="photo1.jpg" alt="Capture violette">
-   <p class="photo-caption" id="photoCaption">La capture violette 💜 Un souvenir que je voulais garder précieusement avec toi ❤️</p>
-   <div class="photo-thumbs">
-    <img src="photo1.jpg" class="active" onclick="changePhoto(1)" alt="Capture violette">
-    <img src="photo2.jpg" onclick="changePhoto(2)" alt="Ancien message pour Licia">
-   </div>
-   <p class="small" style="margin-top:18px">Deux souvenirs, deux moments, et toujours une place particulière dans mon cœur 🥹❤️</p>
+  <h1>Nos petits souvenirs 🥹</h1>
+  <p>Il y a des choses qu'on garde précieusement, parce qu'elles racontent une partie de notre histoire ❤️</p>
+
+  <div class="pictures">
+    <img src="photo1.jpg" alt="Capture d'écran violette de notre souvenir"
+         onerror="this.alt='La capture photo1.jpg est introuvable dans le dépôt GitHub'">
+    <img src="photo2.jpg" alt="Ancien message conservé comme souvenir"
+         onerror="this.alt='La capture photo2.jpg est introuvable dans le dépôt GitHub'">
   </div>
-  <div class="nav"><button class="btn" onclick="goToScene(4)">La suite ✨</button></div>
- </div>
+
+  <p>Ces souvenirs ont leur place ici, tout simplement parce qu'ils comptent pour moi 💗</p>
+  <button class="main-btn" onclick="goToScene(4)">Encore un petit truc 🤭</button>
 </section>
 
-<!-- SCÈNE 4 : VIDÉO + TEXTE TAQUIN -->
+<!-- SCÈNE 4 : VIDÉO -->
+
 <section class="scene" id="scene4">
- <div class="glow one"></div><div class="glow three"></div>
- <div class="card">
-  <div style="font-size:55px">🎥</div>
-  <h2>Une surprise rien que pour toi</h2>
-  <p>Un petit souvenir de nous... et de tes fameuses réprimandes 😂❤️</p>
-  <div class="video-box">
-   <video controls playsinline preload="metadata">
-    <source src="anniversaire.mp4" type="video/mp4">
-    Ta vidéo n'est pas encore disponible.
-   </video>
+  <h1>Toi aussi, tu as ton petit caractère 😂❤️</h1>
+  <div class="card">
+    <video id="liciaVideo" controls playsinline preload="metadata">
+      <source src="anniversaire.mp4" type="video/mp4">
+      Ton navigateur ne peut pas lire cette vidéo.
+    </video>
+
+    <p>
+      Et puis entre nous… tu peux continuer à me gronder hein, moi je kiffe trop,
+      c’est sexy 😂🥵🔥❤️
+    </p>
+
+    <p>
+      Et quand tu commences avec tes petits sous-entendus là 😭😂🤭…
+      après c’est pour dire : « Tu sais ce que je veux » 😂😂🥵🔥❤️
+    </p>
   </div>
-  <div class="video-caption">
-   <p>😂❤️ Même quand tu me grondes pour le forfait que je suis censé utiliser pour parler avec toi, mais que je finis par consommer moi-même, tu restes quand même ma personne préférée 😭❤️</p>
-   <p>J’aime ta manière de me reprendre, tes petites réactions et même ta façon de faire la fâchée avec moi 😂🥹💗</p>
-   <p>Et puis entre nous… tu peux continuer à me gronder hein, moi je kiffe trop, c’est sexy 😂🥵🔥❤️</p>
-   <p>Et quand tu commences avec tes petits sous-entendus là 😭😂🤭… après c’est pour dire : « Tu sais ce que je veux » 😂😂🥵🔥❤️</p>
-  </div>
-  <div class="nav"><button class="btn" onclick="goToScene(5)">J'ai regardé 🥹</button></div>
- </div>
+
+  <button class="main-btn" onclick="goToScene(5)">Tu vois un peu ? 😂</button>
 </section>
 
 <!-- SCÈNE 5 : POURQUOI TOI -->
+
 <section class="scene" id="scene5">
- <div class="glow two"></div><div class="card">
-  <div style="font-size:55px">💗</div>
-  <h2>Pourquoi <span class="pink">toi</span> ?</h2>
-  <p>Je pourrais te donner mille raisons... mais certaines méritent d'être dites doucement.</p>
+  <h1>Pourquoi toi ? ❤️</h1>
+  <p>Parce qu'au-delà des mots, il y a des choses chez toi qui comptent énormément pour moi</p>
+
   <div class="reasons">
-   <div class="reason"><div class="reason-icon">😂</div><h3>Ta façon de rire</h3><p>Il y a des rires qu'on entend simplement... et puis il y a ceux qu'on reconnaît même parmi mille personnes.</p></div>
-   <div class="reason"><div class="reason-icon">❤️</div><h3>Ta façon d'être toi</h3><p>Tu n'as pas besoin d'être parfaite pour être importante. Tu es simplement toi, et c'est justement ça qui te rend unique à mes yeux.</p></div>
-   <div class="reason"><div class="reason-icon">🥹</div><h3>La place que tu as</h3><p>Certaines personnes passent dans notre vie. D'autres y laissent quelque chose qu'on ne sait même pas expliquer. Toi, tu fais partie de ces personnes-là.</p></div>
+    <div class="reason">💗 <strong>Ta beauté</strong><br>
+      Pas seulement celle qu'on voit, mais aussi ce petit quelque chose qui te rend unique à mes yeux
+    </div>
+
+    <div class="reason">🥹 <strong>Ta place dans ma vie</strong><br>
+      Tu as une place particulière dans mon cœur, et je ne veux pas faire comme si c'était banal
+    </div>
+
+    <div class="reason">😂 <strong>Nos délires</strong><br>
+      Nos taquineries, nos discussions et ces petits moments où tu arrives à me faire sourire
+    </div>
+
+    <div class="reason">🙏 <strong>Notre avenir avec Dieu</strong><br>
+      J'aimerais qu'on apprenne à se comprendre, à grandir et à avancer avec Dieu au centre
+    </div>
   </div>
-  <div class="nav"><button class="btn" onclick="goToScene(6)">J'ai compris ❤️</button></div>
- </div>
+
+  <p>Je ne te promets pas une histoire parfaite, mais j'aimerais qu'on construise quelque chose de vrai ❤️</p>
+  <button class="main-btn" onclick="goToScene(6)">La suite 🥹</button>
 </section>
 
-<!-- SCÈNE 6 : QUESTION SUR LA SURPRISE -->
+<!-- SCÈNE 6 : EST-CE QUE TU AS AIMÉ ? -->
+
 <section class="scene" id="scene6">
- <div class="glow one"></div><div class="card">
-  <div style="font-size:60px">🥹❤️</div>
-  <h2>Alors Licia...</h2><p>Après tout ça...</p>
-  <p style="font-size:21px;color:white;margin-top:20px"><strong>Est-ce que tu as aimé cette petite surprise ?</strong></p>
-  <div class="question-zone">
-   <div class="yes-no">
-    <button class="btn" id="yesBtn" onclick="likedIt()">OUI ❤️</button>
-    <button class="btn secondary" id="noBtn" onclick="noClicked()">NON 😭</button>
-   </div>
-   <div class="no-message" id="noMessage"></div>
-  </div>
- </div>
+  <div class="big-heart">💝</div>
+  <h1>Alors, ma vie…</h1>
+  <p>Est-ce que cette petite surprise t'a fait plaisir ? 🥹❤️</p>
+
+  <button class="main-btn" onclick="surpriseReaction(true)">
+    Ouiii, j'ai aimé 😭❤️
+  </button>
+
+  <button class="secondary-btn" onclick="surpriseReaction(false)">
+    Je vais te taquiner 😂
+  </button>
+
+  <p id="reactionText"></p>
 </section>
 
-<!-- SCÈNE 7 : CADEAUX -->
+<!-- SCÈNE 7 : LES CADEAUX -->
+
 <section class="scene" id="scene7">
- <div class="glow two"></div><div class="card">
-  <div style="font-size:60px">🎁</div>
-  <h2>Maintenant... <span class="pink">ton choix</span></h2>
-  <p>J'ai préparé quelques possibilités.<br>Tu peux choisir <strong>maximum 2 cadeaux</strong> ❤️</p>
-  <div class="gift-grid">
-   <label class="gift">
-    <input type="checkbox" value="🤍 iPhone 14 blanc 256 Go">
-    <div class="check">✓</div>
-    <div class="gift-title">🤍 iPhone 14 blanc</div>
-    <div class="gift-desc">256 Go — version américaine — boîte, accessoires et power bank.</div>
-   </label>
-   <label class="gift">
-    <input type="checkbox" value="🥣 Un carton de Cerelac">
-    <div class="check">✓</div>
-    <div class="gift-title">🥣 Un carton de Cerelac</div>
-    <div class="gift-desc">Parce que parfois le bonheur tient aussi dans un carton de Cerelac 😂❤️</div>
-   </label>
-   <label class="gift">
-    <input type="checkbox" value="🫶 Une journée entière ensemble">
-    <div class="check">✓</div>
-    <div class="gift-title">🫶 Une journée entière ensemble</div>
-    <div class="gift-desc">Une journée rien qu'à nous, pour rire, parler, manger et simplement profiter.</div>
-   </label>
+  <h1>Un petit choix pour toi 🎁</h1>
+  <p>Tu peux choisir au maximum deux options. Choisis ce qui te ferait vraiment plaisir ❤️</p>
+
+  <div class="card" style="text-align:left">
+    <label class="choice">
+      <input type="checkbox" name="gift" value="iPhone 14 blanc 256 Go, version américaine, avec boîte, accessoires et power bank">
+      <span>
+        <strong>📱 Un iPhone 14 blanc</strong>
+        256 Go, version américaine, avec sa boîte, ses accessoires et une power bank
+      </span>
+    </label>
+
+    <label class="choice">
+      <input type="checkbox" name="gift" value="Un carton de Cerelac">
+      <span>
+        <strong>🥣 Un carton de Cerelac</strong>
+        Parce que je connais aussi tes petits goûts 😂💗
+      </span>
+    </label>
+
+    <label class="choice">
+      <input type="checkbox" name="gift" value="Une journée entière ensemble">
+      <span>
+        <strong>🫂 Une journée entière ensemble</strong>
+        Du temps à deux, des rires, des discussions et de beaux souvenirs
+      </span>
+    </label>
   </div>
-  <p id="giftCounter" class="small">0 / 2 choix sélectionnés</p>
-  <p id="giftReaction" class="pink" style="margin-top:12px;min-height:25px"></p>
-  <br><button class="btn" id="giftSendBtn" onclick="sendGifts()" disabled>Envoyer mes choix 💌</button>
-  <div class="nav"><button class="btn secondary" onclick="goToScene(8)">Continuer ✨</button></div>
- </div>
+
+  <p id="giftStatus"></p>
+  <button class="main-btn" onclick="saveGifts()">Valider mes choix 💝</button>
 </section>
 
-<!-- SCÈNE 8 : SON MESSAGE -->
+<!-- SCÈNE 8 : TON MESSAGE -->
+
 <section class="scene" id="scene8">
- <div class="glow one"></div><div class="card">
-  <div style="font-size:60px">💭</div>
-  <h2>Maintenant... <span class="pink">à ton tour</span></h2>
-  <p>J'ai parlé, j'ai écrit, j'ai préparé cette petite surprise...<br><br>Maintenant j'aimerais simplement savoir ce qu'elle t'a fait ressentir ❤️</p>
-  <textarea id="loveMessage" placeholder="Écris-moi ton petit mot ici... même quelques mots. Je les lirai avec le sourire ❤️"></textarea>
-  <button class="btn" onclick="sendMessage()">Envoyer mon petit mot 💌</button>
-  <p class="small" style="margin-top:15px">Ton message sera préparé directement dans WhatsApp.</p>
- </div>
+  <h1>Un petit mot pour moi ? 💌</h1>
+  <p>Tu peux m'écrire ce que tu as sur le cœur, même si ce sont juste quelques mots 🥹</p>
+
+  <div class="card">
+    <textarea id="herMessage"
+      placeholder="Écris ton petit message ici, ma vie… ❤️"></textarea>
+
+    <button class="main-btn" onclick="sendHerMessage()">
+      Envoyer mon message 💗
+    </button>
+    <p class="small">Ton message s'ouvrira dans WhatsApp pour que tu puisses l'envoyer</p>
+  </div>
+
+  <button class="secondary-btn" onclick="goToScene(9)">
+    Continuer sans écrire
+  </button>
 </section>
 
-<!-- SCÈNE 9 : MESSAGE PRÊT -->
+<!-- SCÈNE 9 : TRANSITION -->
+
 <section class="scene" id="scene9">
- <div class="glow two"></div><div class="card">
-  <div class="sent-icon">💌</div>
-  <h2>Ton petit mot est prêt...</h2>
-  <p>WhatsApp s'est ouvert pour te permettre de l'envoyer.<br><br>Il reste une dernière chose que j'aimerais te laisser ❤️</p>
-  <div class="nav"><button class="btn" onclick="goToScene(10)">Une dernière chose, mon amour ✨</button></div>
- </div>
+  <div class="big-heart">💗</div>
+  <h1>Merci d'être toi, Licia</h1>
+
+  <div class="card">
+    <p>
+      Peu importe ce que tu as choisi ou écrit, j'espère surtout que cette petite
+      surprise t'aura fait sourire
+    </p>
+
+    <p>
+      Mais avant de terminer, j'ai encore quelque chose à te dire…
+      quelque chose qui vient du fond de mon cœur 🥹
+    </p>
+  </div>
+
+  <button class="main-btn" onclick="goToScene(10)">
+    Écoute-moi un instant 🎧
+  </button>
 </section>
 
-<!-- SCÈNE 10 : DEMANDE D'AVENIR ET EN MARIAGE -->
+<!-- SCÈNE 10 : DEMANDE AVEC AUDIO -->
+
 <section class="scene" id="scene10">
- <div class="glow one"></div><div class="glow two"></div><div class="glow three"></div>
- <div class="card">
-  <p class="small">Pour le futur que j'espère avec toi</p>
-  <div class="proposal-symbol">💍</div>
-  <h2>Mon amour,<br><span class="pink">écoute mon cœur</span></h2>
-  <p>J'ai gardé quelque chose pour la fin... quelque chose que je veux te dire avec ma propre voix ❤️</p>
+  <div class="big-heart">❤️‍🩹</div>
+  <h1>J'ai quelque chose à te demander…</h1>
 
-  <div class="audio-box">
-   <p style="font-weight:bold;color:#ffc1da">🎧 Un message rien que pour toi</p>
-   <p class="small">Installe-toi tranquillement et écoute jusqu'au bout 🥹</p>
-   <!-- Ajoute ton enregistrement sous le nom demande.m4a -->
-   <audio id="proposalAudio" controls preload="metadata">
-    <source src="demande.m4a" type="audio/mp4">
-    Ton navigateur ne peut pas lire cet audio. Vérifie le fichier demande.m4a.
-   </audio>
-   <p class="proposal-note">Si tu n'as pas encore ajouté ton enregistrement, cette partie sera prête dès que tu auras téléversé demande.m4a sur GitHub.</p>
+  <div class="card">
+    <p>
+      Ma vie, écoute cet audio tranquillement jusqu'au bout.
+      J'y ai mis des mots que je voulais te dire avec mon cœur 🥹❤️
+    </p>
+
+    <audio id="proposalAudio" controls preload="metadata">
+      <source src="demande.m4a" type="audio/mp4">
+      Ton navigateur ne peut pas lire cet audio.
+    </audio>
+
+    <p>
+      Est-ce que tu te verrais construire ton avenir avec moi,
+      avancer ensemble avec Dieu au centre et, si Dieu le permet,
+      devenir un jour ma femme ? ❤️🙏
+    </p>
   </div>
 
-  <div class="proposal-text">
-Ma vie… ❤️
+  <button class="main-btn" onclick="proposalYes()">
+    Oui, parlons de notre avenir ❤️
+  </button>
 
-Tu sais, parfois je réfléchis à nous, à tout ce qu’on partage, à tous ces moments où tu me fais sourire même sans être près de moi… et je me dis que si Dieu a permis que nos chemins se croisent, alors je veux prendre soin de ce qu’on construit ensemble.
-
-Je ne vais pas te promettre une vie parfaite, parce que je sais que l’amour ce n’est pas seulement les beaux moments, les rires et les mots doux… C’est aussi apprendre à se comprendre, se soutenir dans les moments difficiles, se pardonner et choisir de continuer à avancer ensemble.
-
-Je veux qu’on grandisse ensemble, qu’on mette Dieu au centre de notre relation, qu’on apprenne à nous aimer toujours mieux et qu’on construise quelque chose de vrai, quelque chose dont on pourra être fiers un jour.
-
-Et quand je pense à mon avenir, ma vie, j’aimerais pouvoir t’y voir encore… pas seulement comme la fille que j’aime aujourd’hui, mais comme la femme avec qui je partagerai mes rêves, mes prières, mes joies et les étapes les plus importantes de ma vie.
-
-Je sais qu’on a encore beaucoup à apprendre et beaucoup de chemin à parcourir, mais si Dieu nous le permet, j’aimerais qu’un jour on puisse se regarder, se tenir la main et se dire qu’on a réussi à construire quelque chose de beau ensemble. ❤️
-  </div>
-
-  <div class="proposal-question">
-   <div style="font-size:45px;margin-bottom:12px">💍❤️</div>
-   <p>Licia, mon amour, ma vie...</p>
-   <p style="margin-top:12px">Est-ce que tu accepterais de construire ton avenir avec moi, avec Dieu au centre de notre histoire, et de devenir un jour ma femme ? 🥹❤️</p>
-  </div>
-
-  <p>Tu n'as pas besoin de trouver les mots parfaits tout de suite. Ce qui compte pour moi, c'est que tu sois sincère avec ton cœur. ❤️</p>
-  <div class="nav">
-   <button class="btn" onclick="proposalYes()">Oui, parlons de notre avenir ❤️</button>
-   <button class="btn secondary" onclick="proposalLater()">Je veux y réfléchir 🥹</button>
-  </div>
-  <p class="proposal-note">Une question posée avec amour, sans pression. Notre avenir se construit ensemble, pas à pas. 🤍</p>
- </div>
+  <button class="secondary-btn" onclick="proposalLater()">
+    Je veux y réfléchir 🥹
+  </button>
 </section>
 
-<!-- SCÈNE 11 : CONCLUSION -->
-<section class="scene" id="scene11">
- <div class="glow one"></div><div class="glow two"></div><div class="card">
-  <div class="final-heart">❤️</div>
-  <h1>Pour toi,<br><span class="pink">Licia</span></h1>
-  <div class="final-text">
-   <p>Certaines personnes arrivent dans notre vie comme si c'était un simple hasard.</p><br>
-   <p>Et puis, avec le temps, on réalise qu'elles ont laissé une trace qu'on n'aurait pas voulu effacer.</p><br>
-   <p>Peu importe les années, les kilomètres, les moments faciles ou les moments compliqués... certaines personnes restent spéciales.</p><br>
-   <p>Et aujourd'hui, je voulais simplement te rappeler que tu comptes énormément pour moi.</p><br>
-   <p>Alors joyeux anniversaire ma vie ❤️<br>Que cette nouvelle année de ta vie t'apporte beaucoup de bonheur, de paix, de réussite et de beaux souvenirs.</p><br>
-   <p class="pink">Merci d'exister ma chérie ❤️</p>
-   <p style="margin-top:20px">Que Dieu nous guide chacun de nos pas et nous apprenne à aimer avec patience, vérité et douceur. 🙏🏽❤️</p>
+<!-- SCÈNE 11 : LES DEUX OURS -->
+
+<section class="scene bear-scene" id="scene11">
+  <div class="moon"></div>
+  <span class="star" style="top:15%;left:15%">✦</span>
+  <span class="star" style="top:25%;right:18%">✧</span>
+  <span class="star" style="top:40%;left:10%">✧</span>
+  <span class="star" style="top:50%;right:10%">✦</span>
+
+  <div class="cross"></div>
+  <div class="path"></div>
+
+  <h1 style="z-index:4;margin-top:35px">Un pas après l'autre ❤️</h1>
+
+  <p style="z-index:4">
+    Deux cœurs, deux chemins qui choisissent d'avancer ensemble,
+    avec Jésus comme lumière 🥹🙏
+  </p>
+
+  <div class="bears" aria-label="Un ours blanc et un ours rose qui se tiennent la main">
+    <div class="bear white">
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+      <div class="head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="muzzle"></div>
+      </div>
+      <div class="body"></div>
+      <div class="arm left"></div>
+      <div class="arm right"></div>
+    </div>
+
+    <div class="bear pink">
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+      <div class="head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="muzzle"></div>
+      </div>
+      <div class="body"></div>
+      <div class="arm left"></div>
+      <div class="arm right"></div>
+    </div>
   </div>
-  <div class="code">5201314</div>
-  <p class="small" style="margin-top:20px">Une petite surprise faite avec beaucoup de cœur ❤️</p>
- </div>
+
+  <div class="bear-caption">
+    <p>
+      Je ne veux pas seulement rêver d'un avenir avec toi.
+      J'aimerais qu'on apprenne à le construire, doucement,
+      avec de l'amour, de la patience, de la vérité et Dieu au centre ❤️
+    </p>
+
+    <button class="main-btn" onclick="goToScene(13)">
+      On avance doucement ❤️
+    </button>
+  </div>
+</section>
+
+<!-- SCÈNE 12 : SI ELLE VEUT RÉFLÉCHIR -->
+
+<section class="scene" id="scene12">
+  <div class="big-heart">🫂</div>
+  <h1>Prends ton temps, ma vie</h1>
+
+  <div class="card">
+    <p>
+      Tu n'as pas besoin de me donner une réponse tout de suite, ni de te sentir
+      obligée de dire oui pour me faire plaisir ❤️
+    </p>
+
+    <p>
+      Je veux que ta réponse vienne de ton cœur, librement et sincèrement
+    </p>
+
+    <p>
+      On peut prendre le temps de parler, de mieux se comprendre et de construire
+      petit à petit, sans pression, avec Dieu au centre 🙏
+    </p>
+
+    <p>
+      Ce qui compte pour moi, c'est qu'on soit vrais l'un envers l'autre
+      et qu'on avance au rythme qui nous convient à tous les deux 🥹💗
+    </p>
+  </div>
+
+  <button class="main-btn" onclick="goToScene(13)">
+    Merci de m'avoir écouté ❤️
+  </button>
+</section>
+
+<!-- SCÈNE 13 : CONCLUSION -->
+
+<section class="scene" id="scene13">
+  <div class="final-heart">❤️</div>
+  <h1>Pour toi, Licia</h1>
+
+  <div class="card">
+    <p>
+      Ma vie, merci d'avoir pris le temps de découvrir cette petite surprise
+    </p>
+
+    <p>
+      Merci d'exister ma chérie, merci pour les sourires, les souvenirs,
+      les délires et toutes ces petites choses qui rendent notre histoire spéciale 💗
+    </p>
+
+    <p>
+      Je prie que Dieu nous guide, nous donne la sagesse, la patience,
+      la sincérité et la force de faire les choses de la bonne manière 🙏
+    </p>
+
+    <p>
+      Peu importe le rythme auquel on avance, j'espère qu'on saura toujours
+      se parler avec vérité, se respecter et laisser Dieu nous guider
+    </p>
+
+    <h2 style="margin-top:25px">Je t'envoie plein d'amour ❤️🥹</h2>
+    <p>5201314 💗</p>
+  </div>
+
+  <button class="main-btn" onclick="goToScene(1)">
+    Revoir la surprise 💌
+  </button>
 </section>
 
 <script>
-let selectedGifts=[];
-let noClicks=0;
-let birthdayStarted=false;
+const bgMusic = document.getElementById("bgMusic");
+const video = document.getElementById("liciaVideo");
+const proposalAudio = document.getElementById("proposalAudio");
 
-const bgMusic=document.getElementById("bgMusic");
-const musicToggle=document.getElementById("musicToggle");
-const envelope=document.getElementById("envelope");
-const myWhatsApp="22997157264";
+let typingStarted = false;
+let selectedGifts = [];
 
-let count=3;
-const countdown=document.getElementById("countdown");
-const timer=setInterval(function(){
- count--;
- if(count<=0){
-  clearInterval(timer);
-  countdown.textContent="💌";
- }else{
-  countdown.textContent=count;
- }
-},1000);
+const birthdayMessage =
+`Ma vie, je crois que la gravité n'est pas la seule chose qui attire les corps : parfois, il y a aussi ces petits liens invisibles qui rapprochent deux personnes ❤️
 
-function goToScene(number){
- document.querySelectorAll(".scene").forEach(s=>s.classList.remove("active"));
- const target=document.getElementById("scene"+number);
- if(!target)return;
- target.classList.add("active");
- window.scrollTo({top:0,behavior:"smooth"});
- if(number===5)animateReasons();
- if(number===2)typeBirthdayText();
+Aujourd'hui, c'est ton jour, et je voulais faire quelque chose de différent pour toi. Pas seulement te souhaiter un joyeux anniversaire avec quelques mots, mais créer un petit endroit où tu pourrais retrouver un peu de notre histoire et sentir combien tu comptes pour moi 🥹💗
 
- // Arrête les médias lorsqu'on quitte leur scène
- if(number!==4){
-  const video=document.querySelector("#scene4 video");
-  if(video)video.pause();
- }
- if(number!==10){
-  const proposalAudio=document.getElementById("proposalAudio");
-  if(proposalAudio)proposalAudio.pause();
- }
+Merci d'exister ma chérie, merci d'être cette personne qui peut me faire sourire, me taquiner et me donner envie de garder de beaux souvenirs avec elle
+
+Je te souhaite une année remplie de paix, de santé, de joie, de réussite et surtout de la présence de Dieu dans chacun de tes pas 🙏❤️
+
+Que le Seigneur protège ton cœur, guide tes choix et t'accompagne dans tout ce que tu entreprends
+
+Joyeux anniversaire lili je t'aime. Profite de ta journée, tu le mérites 💗`;
+
+function goToScene(number) {
+  document.querySelectorAll(".scene").forEach(scene => {
+    scene.classList.remove("active");
+  });
+
+  const nextScene = document.getElementById("scene" + number);
+  if (nextScene) nextScene.classList.add("active");
+
+  if (number !== 4 && video) {
+    video.pause();
+  }
+
+  if (number !== 10 && proposalAudio) {
+    proposalAudio.pause();
+  }
+
+  if (number === 2 && !typingStarted) {
+    typingStarted = true;
+    typeBirthdayMessage();
+  }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function toggleMusic(){
- if(bgMusic.paused){
-  bgMusic.play().then(()=>{
-   musicToggle.textContent="🔊";
-  }).catch(()=>showToast("Appuie encore pour lancer la musique 🎵"));
- }else{
-  bgMusic.pause();
-  musicToggle.textContent="🎵";
- }
+function startSurprise() {
+  bgMusic.volume = 0.35;
+  bgMusic.play().then(() => {
+    document.getElementById("musicToggle").textContent = "🎵";
+  }).catch(() => {
+    document.getElementById("musicToggle").textContent = "🔇";
+  });
+
+  goToScene(2);
 }
 
-envelope.addEventListener("click",function(){
- if(envelope.classList.contains("open"))return;
- envelope.classList.add("open");
- bgMusic.volume=.22;
- bgMusic.play().then(()=>musicToggle.textContent="🔊").catch(()=>{});
- createConfetti(30);
- setTimeout(()=>goToScene(2),1200);
+function toggleMusic() {
+  if (bgMusic.paused) {
+    bgMusic.play().then(() => {
+      document.getElementById("musicToggle").textContent = "🎵";
+    }).catch(() => {
+      document.getElementById("musicToggle").textContent = "🔇";
+    });
+  } else {
+    bgMusic.pause();
+    document.getElementById("musicToggle").textContent = "🔇";
+  }
+}
+
+function typeBirthdayMessage() {
+  const target = document.getElementById("birthdayText");
+  target.textContent = "";
+
+  let i = 0;
+
+  function writeNext() {
+    if (i < birthdayMessage.length) {
+      target.textContent += birthdayMessage.charAt(i);
+      i++;
+      setTimeout(writeNext, 24);
+    }
+  }
+
+  writeNext();
+}
+
+function surpriseReaction(liked) {
+  const target = document.getElementById("reactionText");
+
+  if (liked) {
+    target.textContent = "Awww 🥹❤️ ça me fait vraiment plaisir, ma vie !";
+  } else {
+    target.textContent = "Même quand tu me taquines, je sais que tu es comme ça 😂❤️";
+  }
+
+  setTimeout(() => goToScene(7), 1200);
+}
+
+document.querySelectorAll('input[name="gift"]').forEach(input => {
+  input.addEventListener("change", () => {
+    const checked = [...document.querySelectorAll('input[name="gift"]:checked')];
+
+    if (checked.length > 2) {
+      input.checked = false;
+      document.getElementById("giftStatus").textContent =
+        "Tu peux choisir deux cadeaux au maximum 😊";
+    } else {
+      document.getElementById("giftStatus").textContent =
+        checked.length + " choix sélectionné(s)";
+    }
+  });
 });
 
-function typeBirthdayText(){
- if(birthdayStarted)return;
- birthdayStarted=true;
- const text=`Ma vie,
+function saveGifts() {
+  selectedGifts = [...document.querySelectorAll('input[name="gift"]:checked')]
+    .map(input => input.value);
 
-Je crois que la gravité a vraiment fait son travail...
-
-Parce que peu importe la distance,
-les années ou les circonstances,
-il y a toujours quelque chose qui me ramène vers toi.
-
-Aujourd'hui je ne veux pas simplement te dire "joyeux anniversaire".
-
-Je veux te rappeler que derrière cette date,
-il y a une personne qui mérite d'être célébrée.
-
-Toi.
-
-Merci d'exister ma chérie ❤️
-
-Merci pour les souvenirs,
-pour les rires,
-pour les discussions,
-pour les moments simples,
-et même pour les moments qui nous ont appris quelque chose.
-
-Je ne sais pas exactement ce que l'avenir nous réserve...
-
-Mais aujourd'hui,
-je suis simplement heureux que tu existes. ❤️`;
- const element=document.getElementById("birthdayText");
- let i=0;
- function write(){
-  if(i<text.length){
-   element.textContent+=text.charAt(i++);
-   setTimeout(write,22);
-  }
- }
- write();
-}
-
-const captions={
- 1:"La capture violette 💜 Un souvenir que je voulais garder précieusement avec toi ❤️",
- 2:"Ce message date d'il y a quelques années... mais il représente une partie de ce que je ressentais déjà pour toi 🥹❤️"
-};
-
-function changePhoto(number){
- const mainPhoto=document.getElementById("mainPhoto");
- const caption=document.getElementById("photoCaption");
- const thumbs=document.querySelectorAll(".photo-thumbs img");
- mainPhoto.src="photo"+number+".jpg";
- mainPhoto.alt=number===1?"Capture violette":"Ancien message pour Licia";
- caption.textContent=captions[number];
- thumbs.forEach(img=>img.classList.remove("active"));
- thumbs[number-1].classList.add("active");
-}
-
-function animateReasons(){
- document.querySelectorAll(".reason").forEach((reason,index)=>{
-  reason.classList.remove("show");
-  setTimeout(()=>reason.classList.add("show"),index*450);
- });
-}
-
-function likedIt(){
- createConfetti(100);
- setTimeout(()=>goToScene(7),700);
-}
-
-function noClicked(){
- noClicks++;
- const noBtn=document.getElementById("noBtn");
- const yesBtn=document.getElementById("yesBtn");
- const message=document.getElementById("noMessage");
- message.classList.add("show");
- const zone=document.querySelector(".question-zone");
- const maxX=Math.max(40,zone.clientWidth/2-75);
- const randomX=Math.random()*maxX*2-maxX;
- const randomY=Math.random()*100-50;
- noBtn.style.transform=`translate(${randomX}px,${randomY}px)`;
- yesBtn.style.transform=`scale(${Math.min(1+noClicks*.18,2.2)})`;
- if(noClicks===1)message.innerHTML="<div><strong>NON ? 😭</strong><br><br>Tu es vraiment sûre ? 😂❤️</div>";
- if(noClicks===2)message.innerHTML="<div><strong>Encore NON ? 😭😂</strong><br><br>Le bouton OUI commence à prendre de la place 👀❤️</div>";
- if(noClicks>=3)message.innerHTML="<div><strong>Bon... 😭❤️</strong><br><br>J'espère quand même que cette surprise t'a fait sourire 😂</div>";
- if(noClicks>=5){
-  noBtn.style.opacity=".2";
-  yesBtn.textContent="OUI ❤️😂";
- }
- if(noClicks>=7){
-  noBtn.style.display="none";
-  yesBtn.style.transform="scale(2.3)";
- }
-}
-
-document.querySelectorAll(".gift").forEach(gift=>{
- gift.addEventListener("click",function(event){
-  event.preventDefault();
-  const checkbox=gift.querySelector("input");
-  if(checkbox.checked){
-   checkbox.checked=false;
-   gift.classList.remove("selected");
-  }else{
-   if(selectedGifts.length>=2){
-    showToast("Maximum 2 cadeaux 😭❤️");
+  if (selectedGifts.length === 0) {
+    document.getElementById("giftStatus").textContent =
+      "Choisis au moins un cadeau, ou continue quand tu veux ❤️";
     return;
-   }
-   checkbox.checked=true;
-   gift.classList.add("selected");
   }
-  updateGiftSelection();
- });
-});
 
-function updateGiftSelection(){
- selectedGifts=[];
- document.querySelectorAll(".gift input:checked").forEach(input=>selectedGifts.push(input.value));
- document.getElementById("giftSendBtn").disabled=selectedGifts.length===0;
- document.getElementById("giftCounter").textContent=selectedGifts.length+" / 2 choix sélectionnés";
- document.getElementById("giftReaction").textContent=
-  selectedGifts.length===1?"Excellent choix 😌❤️":
-  selectedGifts.length===2?"Madame sait exactement ce qu'elle veut 😂❤️":"";
+  document.getElementById("giftStatus").textContent =
+    "Tes choix sont enregistrés 💗";
+
+  setTimeout(() => goToScene(8), 700);
 }
 
-function sendGifts(){
- if(!selectedGifts.length){
-  showToast("Choisis au moins un cadeau ❤️");
-  return;
- }
- let message="🎁 Coucou Beni ❤️\n\nJ'ai choisi mes cadeaux pour mon anniversaire 🥹🎂\n\n";
- selectedGifts.forEach((gift,index)=>message+=(index+1)+". "+gift+"\n");
- message+="\nMerci pour cette surprise ❤️\n\n5201314";
- openWhatsApp(message);
+function sendHerMessage() {
+  const message = document.getElementById("herMessage").value.trim();
+
+  if (!message) {
+    goToScene(9);
+    return;
+  }
+
+  const giftText = selectedGifts.length
+    ? "\n\nMes choix de cadeaux :\n- " + selectedGifts.join("\n- ")
+    : "";
+
+  const fullMessage =
+    "Coucou Riri ❤️ voici mon petit message après ta surprise :\n\n" +
+    message + giftText;
+
+  const whatsappURL =
+    "https://wa.me/22997157264?text=" + encodeURIComponent(fullMessage);
+
+  window.open(whatsappURL, "_blank");
+  goToScene(9);
 }
 
-function sendMessage(){
- const text=document.getElementById("loveMessage").value.trim();
- if(!text){
-  showToast("Écris-moi au moins un petit mot ❤️");
-  return;
- }
- const message="💌 Petit mot de Licia pour Beni ❤️\n\n"+text+"\n\n❤️ 5201314";
- openWhatsApp(message);
- createConfetti(50);
- goToScene(9);
+function proposalYes() {
+  goToScene(11);
 }
 
-function openWhatsApp(message){
- const url="https://wa.me/"+myWhatsApp+"?text="+encodeURIComponent(message);
- window.open(url,"_blank");
-}
-
-function proposalYes(){
- createConfetti(120);
- showToast("Un avenir à construire pas à pas ❤️");
- setTimeout(()=>goToScene(11),900);
-}
-
-function proposalLater(){
- showToast("Prends ton temps, mon amour ❤️");
- setTimeout(()=>goToScene(11),900);
-}
-
-function showToast(text){
- const toast=document.getElementById("toast");
- toast.textContent=text;
- toast.classList.add("show");
- setTimeout(()=>toast.classList.remove("show"),2800);
-}
-
-function createConfetti(amount){
- const symbols=["❤️","💕","💗","✨","💖","🌸","💍","🤍"];
- for(let i=0;i<amount;i++){
-  const item=document.createElement("div");
-  item.className="confetti";
-  item.textContent=symbols[Math.floor(Math.random()*symbols.length)];
-  item.style.left=Math.random()*100+"vw";
-  item.style.fontSize=(12+Math.random()*18)+"px";
-  item.style.animationDuration=(2+Math.random()*4)+"s";
-  document.body.appendChild(item);
-  setTimeout(()=>item.remove(),6500);
- }
+function proposalLater() {
+  goToScene(12);
 }
 </script>
+
 </body>
 </html>
