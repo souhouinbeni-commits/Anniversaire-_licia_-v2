@@ -63,12 +63,16 @@ video{width:100%;display:block;max-height:480px}
 .reason-icon{font-size:35px;margin-bottom:10px}
 .reason h3{margin-bottom:8px}
 .reason p{font-size:15px}
-.question-zone{min-height:300px;position:relative;margin-top:20px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:20px}
-.yes-no{display:flex;align-items:center;justify-content:center;gap:18px;width:100%;min-height:220px;position:relative}
-#yesBtn{position:relative;z-index:6;transform-origin:center;transition:transform .25s}
-#noBtn{position:absolute;z-index:7;transition:left .18s ease,top .18s ease,transform .18s ease,opacity .2s}
+
+/* OUI / NON : POSITIONNEMENT ET DÉPLACEMENT CORRIGÉS */
+.question-zone{height:310px;min-height:310px;position:relative;margin-top:20px;overflow:hidden;border-radius:20px}
+.yes-no{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#yesBtn,#noBtn{position:absolute;top:50%;white-space:nowrap;pointer-events:auto;transform:translate(-50%,-50%);transition:left .22s ease,top .22s ease,transform .25s ease,opacity .2s;z-index:6}
+#yesBtn{left:32%;transform:translate(-50%,-50%) scale(1);transform-origin:center}
+#noBtn{left:70%;transform:translate(-50%,-50%);z-index:7}
 .no-message{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:25px;background:#350d2c;border:1px solid #ff579b;color:#ffb0d1;border-radius:20px;opacity:0;pointer-events:none;transition:.3s;z-index:2}
 .no-message.show{opacity:1}
+
 .gift-grid{display:grid;gap:14px;margin:25px 0}
 .gift{position:relative;padding:20px;text-align:left;border-radius:20px;background:#ffffff0b;border:2px solid #ffffff15;cursor:pointer;transition:.3s}
 .gift.selected{border-color:var(--pink);background:#ff2f811f}
@@ -86,7 +90,6 @@ textarea::placeholder{color:#a9a0b0}
 .toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,120px);padding:14px 20px;border-radius:30px;background:#17101e;border:1px solid #ffffff25;z-index:2000;transition:.4s;text-align:center;width:max-content;max-width:90%}
 .toast.show{transform:translate(-50%,0)}
 .proposal-symbol{font-size:68px;margin:12px 0;animation:beat 1.6s infinite}
-.proposal-text{text-align:left;white-space:pre-line;line-height:1.9;background:#ffffff08;border:1px solid #ffffff17;border-radius:20px;padding:20px;margin:22px 0}
 .audio-box{margin:22px 0;padding:20px;border-radius:22px;background:linear-gradient(135deg,#ff579b18,#8e53ff18);border:1px solid #ff9fc733}
 audio{width:100%;margin-top:15px}
 .proposal-question{margin:25px 0;padding:23px 15px;border-radius:22px;background:linear-gradient(135deg,#ff579b16,#a66cff16);border:1px solid #ff9fc744}
@@ -97,7 +100,7 @@ audio{width:100%;margin-top:15px}
 .confetti{position:fixed;top:-30px;z-index:3000;pointer-events:none;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
 
-/* NOUVELLE SCÈNE : LES DEUX OURS ET LA CROIX */
+/* SCÈNE DES DEUX OURS ET DE LA CROIX */
 .bear-scene{background:radial-gradient(ellipse at 50% 100%,#563252,transparent 55%),linear-gradient(#100b23,#24152f 75%,#493049)}
 .bear-scene .card{background:#10071955}
 .bear-stage{position:relative;width:100%;height:300px;overflow:hidden;margin:20px 0 5px}
@@ -128,13 +131,12 @@ audio{width:100%;margin-top:15px}
 .teddy.white .arm.right{transform:rotate(-48deg)}
 .teddy.pinkbear .arm.left{transform:rotate(48deg)}
 .bear-caption{position:relative;z-index:4;margin-top:10px}
+
 @media(max-width:600px){
  .card{padding:25px 17px}
  .btn{padding:13px 17px}
  .photo-main{max-height:380px}
- .proposal-text{padding:16px}
- .question-zone{min-height:310px}
- .yes-no{min-height:250px}
+ .question-zone{height:310px;min-height:310px}
  .teddy{transform:scale(.9);transform-origin:bottom center}
 }
 </style>
@@ -300,7 +302,7 @@ audio{width:100%;margin-top:15px}
  </div>
 </section>
 
-<!-- SCÈNE 10 : DEMANDE -->
+<!-- SCÈNE 10 : DEMANDE EN MARIAGE -->
 <section class="scene" id="scene10">
  <div class="glow one"></div><div class="glow two"></div><div class="glow three"></div>
  <div class="card">
@@ -308,6 +310,7 @@ audio{width:100%;margin-top:15px}
   <div class="proposal-symbol">💍</div>
   <h2>Mon amour,<br><span class="pink">écoute mon cœur</span></h2>
   <p>J'ai gardé quelque chose pour la fin... quelque chose que je veux te dire avec ma propre voix ❤️</p>
+
   <div class="audio-box">
    <p style="font-weight:bold;color:#ffc1da">🎧 Un message rien que pour toi</p>
    <p class="small">Installe-toi tranquillement et écoute jusqu'au bout 🥹</p>
@@ -315,25 +318,18 @@ audio{width:100%;margin-top:15px}
     <source src="demande.m4a" type="audio/mp4">
     Ton navigateur ne peut pas lire cet audio. Vérifie le fichier demande.m4a.
    </audio>
-   <p class="proposal-note">Ajoute ton enregistrement sous le nom demande.m4a dans ton dépôt GitHub.</p>
   </div>
-  <div class="proposal-text">Ma vie… ❤️
 
-Tu sais, parfois je réfléchis à nous, à tout ce qu’on partage, à tous ces moments où tu me fais sourire même sans être près de moi… et je me dis que si Dieu a permis que nos chemins se croisent, alors je veux prendre soin de ce qu’on construit ensemble.
+  <!-- Le long texte sous l'audio et la note technique ont été retirés -->
 
-Je ne vais pas te promettre une vie parfaite, parce que je sais que l’amour ce n’est pas seulement les beaux moments, les rires et les mots doux… C’est aussi apprendre à se comprendre, se soutenir dans les moments difficiles, se pardonner et choisir de continuer à avancer ensemble.
-
-Je veux qu’on grandisse ensemble, qu’on mette Dieu au centre de notre relation, qu’on apprenne à nous aimer toujours mieux et qu’on construise quelque chose de vrai, quelque chose dont on pourra être fiers un jour.
-
-Et quand je pense à mon avenir, ma vie, j’aimerais pouvoir t’y voir encore… pas seulement comme la fille que j’aime aujourd’hui, mais comme la femme avec qui je partagerai mes rêves, mes prières, mes joies et les étapes les plus importantes de ma vie.
-
-Je sais qu’on a encore beaucoup à apprendre et beaucoup de chemin à parcourir, mais si Dieu nous le permet, j’aimerais qu’un jour on puisse se regarder, se tenir la main et se dire qu’on a réussi à construire quelque chose de beau ensemble. ❤️</div>
   <div class="proposal-question">
    <div style="font-size:45px;margin-bottom:12px">💍❤️</div>
    <p>Licia, mon amour, ma vie...</p>
    <p style="margin-top:12px">Est-ce que tu accepterais de construire ton avenir avec moi, avec Dieu au centre de notre histoire, et de devenir un jour ma femme ? 🥹❤️</p>
   </div>
+
   <p>Tu n'as pas besoin de trouver les mots parfaits tout de suite. Ce qui compte pour moi, c'est que tu sois sincère avec ton cœur. ❤️</p>
+
   <div class="nav">
    <button class="btn" onclick="proposalYes()">Oui, parlons de notre avenir ❤️</button>
    <button class="btn secondary" onclick="proposalLater()">Je veux y réfléchir 🥹</button>
@@ -342,7 +338,7 @@ Je sais qu’on a encore beaucoup à apprendre et beaucoup de chemin à parcouri
  </div>
 </section>
 
-<!-- SCÈNE 11 : CONCLUSION ORIGINALE -->
+<!-- SCÈNE 11 : CONCLUSION -->
 <section class="scene" id="scene11">
  <div class="glow one"></div><div class="glow two"></div><div class="card">
   <div class="final-heart">❤️</div>
@@ -361,7 +357,7 @@ Je sais qu’on a encore beaucoup à apprendre et beaucoup de chemin à parcouri
  </div>
 </section>
 
-<!-- SCÈNE 12 : OUI - LES OURS ET JÉSUS -->
+<!-- SCÈNE 12 : OUI - LES OURS ET LA CROIX -->
 <section class="scene bear-scene" id="scene12">
  <div class="glow one"></div><div class="glow two"></div>
  <div class="card">
@@ -428,11 +424,6 @@ const countdown=document.getElementById("countdown");
 const introText=document.getElementById("introText");
 const envelopeHint=document.getElementById("envelopeHint");
 
-const captions={
- 1:"La capture violette 💜 Un souvenir que je voulais garder précieusement avec toi ❤️",
- 2:"Ce message date d'il y a quelques années... mais il représente une partie de ce que je ressentais déjà pour toi 🥹❤️"
-};
-
 /* DÉCOMPTE 3 - 2 - 1 */
 function startCountdown(){
  if(countdownTimer)clearInterval(countdownTimer);
@@ -493,7 +484,7 @@ function toggleMusic(){
  }
 }
 
-/* ENVELOPPE : IMPOSSIBLE À OUVRIR AVANT LA FIN DU DÉCOMPTE */
+/* ENVELOPPE */
 envelope.addEventListener("click",function(){
  if(!countdownFinished){
   showToast("Patience ma vie, attends la fin du décompte ❤️");
@@ -508,7 +499,7 @@ envelope.addEventListener("click",function(){
  setTimeout(()=>goToScene(2),1200);
 });
 
-/* TEXTE D'ANNIVERSAIRE ORIGINAL */
+/* TEXTE D'ANNIVERSAIRE */
 function typeBirthdayText(){
  if(birthdayStarted)return;
  birthdayStarted=true;
@@ -553,7 +544,12 @@ je suis simplement heureux que tu existes. ❤️`;
  write();
 }
 
-/* PHOTOS ET LEURS LÉGENDES */
+/* PHOTOS ET LÉGENDES */
+const captions={
+ 1:"La capture violette 💜 Un souvenir que je voulais garder précieusement avec toi ❤️",
+ 2:"Ce message date d'il y a quelques années... mais il représente une partie de ce que je ressentais déjà pour toi 🥹❤️"
+};
+
 function changePhoto(number){
  const mainPhoto=document.getElementById("mainPhoto");
  const caption=document.getElementById("photoCaption");
@@ -574,19 +570,26 @@ function animateReasons(){
  });
 }
 
-/* QUESTION OUI / NON */
+/* QUESTION OUI / NON : MÉCANISME CORRIGÉ */
 function resetYesNo(){
  noClicks=0;
+
+ const zone=document.getElementById("questionZone");
  const noBtn=document.getElementById("noBtn");
  const yesBtn=document.getElementById("yesBtn");
  const message=document.getElementById("noMessage");
 
  noBtn.style.display="";
  noBtn.style.opacity="1";
- noBtn.style.left="";
- noBtn.style.top="";
- noBtn.style.transform="";
- yesBtn.style.transform="";
+ noBtn.style.left="70%";
+ noBtn.style.top="50%";
+ noBtn.style.transform="translate(-50%,-50%)";
+
+ yesBtn.textContent="OUI ❤️";
+ yesBtn.style.left="32%";
+ yesBtn.style.top="50%";
+ yesBtn.style.transform="translate(-50%,-50%) scale(1)";
+
  message.classList.remove("show");
  message.textContent="";
 }
@@ -605,37 +608,43 @@ function noClicked(){
  const message=document.getElementById("noMessage");
  const zone=document.getElementById("questionZone");
 
- /* Agrandir OUI à chaque clic sur NON */
+ /* Le bouton OUI grossit à chaque clic */
  const scale=Math.min(1+noClicks*.18,2.3);
- yesBtn.style.transform=`scale(${scale})`;
+ yesBtn.style.transform=`translate(-50%,-50%) scale(${scale})`;
 
- /* Déplacer NON dans la zone visible de la question */
+ /* Le bouton NON saute à une nouvelle position dans la zone */
  const padding=12;
- const maxX=Math.max(padding,zone.clientWidth-noBtn.offsetWidth-padding);
- const maxY=Math.max(padding,zone.clientHeight-noBtn.offsetHeight-padding);
+ const halfW=noBtn.offsetWidth/2;
+ const halfH=noBtn.offsetHeight/2;
 
- noBtn.style.left=(padding+Math.random()*Math.max(0,maxX-padding))+"px";
- noBtn.style.top=(padding+Math.random()*Math.max(0,maxY-padding))+"px";
+ const minX=halfW+padding;
+ const maxX=Math.max(minX,zone.clientWidth-halfW-padding);
+ const minY=halfH+padding;
+ const maxY=Math.max(minY,zone.clientHeight-halfH-padding);
+
+ noBtn.style.left=(minX+Math.random()*(maxX-minX))+"px";
+ noBtn.style.top=(minY+Math.random()*(maxY-minY))+"px";
 
  message.classList.add("show");
 
  if(noClicks===1){
   message.innerHTML="<div><strong>NON ? 😭</strong><br><br>Tu es vraiment sûre ? 😂❤️</div>";
  }else if(noClicks===2){
-  message.innerHTML="<div><strong>Encore NON ? 😭😂</strong><br><br>Le bouton OUI commence à prendre de la place 👀❤️</div>";
+  message.innerHTML="<div><strong>Encore NON ? 😭😂</strong><br><br>Regarde le OUI qui grandit 👀❤️</div>";
  }else if(noClicks<5){
   message.innerHTML="<div><strong>Essaie encore 😂❤️</strong><br><br>Tu crois vraiment pouvoir échapper au OUI ? 🤭</div>";
  }else{
-  message.innerHTML="<div><strong>Bon... 😭❤️</strong><br><br>Je crois que le bouton OUI veut vraiment gagner 😂</div>";
+  message.innerHTML="<div><strong>Bon... 😭❤️</strong><br><br>Le bouton OUI veut vraiment gagner 😂</div>";
  }
 
  if(noClicks>=5){
-  noBtn.style.opacity=".35";
+  noBtn.style.opacity=".45";
   yesBtn.textContent="OUI ❤️😂";
  }
+
  if(noClicks>=7){
   noBtn.style.display="none";
-  yesBtn.style.transform="scale(2.1)";
+  yesBtn.style.transform="translate(-50%,-50%) scale(2.1)";
   message.innerHTML="<div><strong>Il ne reste plus qu'un choix 😂❤️</strong><br><br>Appuie sur OUI, ma vie 🤭</div>";
  }
 }
@@ -718,7 +727,7 @@ function proposalLater(){
  setTimeout(()=>goToScene(13),900);
 }
 
-/* PETITES NOTIFICATIONS */
+/* NOTIFICATIONS */
 function showToast(text){
  const toast=document.getElementById("toast");
  toast.textContent=text;
